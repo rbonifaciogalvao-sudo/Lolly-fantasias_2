@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicionário de Dados — Lolly Fantasias</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px;
+            line-height: 1.45;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: left;
+            margin-top: 36px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 28px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px auto;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #000;
+            padding: 6px 8px;
+            text-align: left;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        thead th {
+            background: #e8e8e8;
+        }
+
+        .caixa {
+            background-color: #0011ff22;
+            border: 2px solid #001b64f3;
+            padding: 14px 18px;
+            margin: 14px 0;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            font-size: 15px;
+        }
+
+        .nota {
+            background: #f6f6f6;
+            border-left: 4px solid #888;
+            padding: 8px 14px;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        hr {
+            margin: 28px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Dicionário de Dados — Lolly Fantasias</h1>
+    <p><strong>Versão:</strong> v2.1 &nbsp;|&nbsp; <strong>Data:</strong> 06/11/2026 &nbsp;|&nbsp; <strong>Entrega
+            2</strong> (revisão da v1.0, da Entrega 1)</p>
+
+    <h2>1. Modelo conceitual</h2>
+    <p>Este modelo representa a loja Lolly Fantasias (Canindé, São Paulo), que vende fantasias infantis e adultas no
+        varejo e no atacado. Cada venda é realizada por um funcionário, tem um cliente (o registro genérico, quando o
+        cliente não é cadastrado) e contém uma ou várias fantasias, cada uma com quantidade e valor praticado. A loja
+        não produz fantasias, só vende: toda fantasia vem de um fornecedor. Quando a fantasia não está em estoque, a
+        venda é feita sob encomenda e a fantasia é pedida ao fornecedor. A venda pode ser retirada na loja ou enviada
+        por correio ou excursão (só acima de R$ 200,00), e é de atacado a partir de 6 peças. A loja troca o produto, sem
+        devolver o valor. A loja recebe mercadoria em compras, cada uma com um funcionário responsável e com as
+        fantasias recebidas. Cada venda e cada compra gera uma movimentação de caixa, e as movimentações são conferidas
+        nos fechamentos de caixa.</p>
+    <p>O par (mín, máx) ao lado de cada entidade indica quantas vezes uma ocorrência dessa entidade participa do
+        relacionamento.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Relacionamento</th>
+                <th>Entidade</th>
+                <th>Relaciona-se com</th>
+                <th>Cardinalidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>EFETUA</td>
+                <td>CLIENTE</td>
+                <td>VENDA</td>
+                <td>(0,n) — um cliente efetua nenhuma ou várias vendas.</td>
+            </tr>
+            <tr>
+                <td>EFETUA</td>
+                <td>VENDA</td>
+                <td>CLIENTE</td>
+                <td>(1,1) — uma venda é efetuada por um e somente um cliente (o registro genérico vale quando não há
+                    cadastro).</td>
+            </tr>
+            <tr>
+                <td>REALIZA</td>
+                <td>FUNCIONARIO</td>
+                <td>VENDA</td>
+                <td>(0,n) — um funcionário realiza nenhuma ou várias vendas.</td>
+            </tr>
+            <tr>
+                <td>REALIZA</td>
+                <td>VENDA</td>
+                <td>FUNCIONARIO</td>
+                <td>(1,1) — uma venda é realizada por um e somente um funcionário.</td>
+            </tr>
+            <tr>
+                <td>CONTEM</td>
+                <td>VENDA</td>
+                <td>FANTASIA</td>
+                <td>(1,n) — uma venda contém uma ou várias fantasias, cada uma com quantidade e valor praticado.</td>
+            </tr>
+            <tr>
+                <td>CONTEM</td>
+                <td>FANTASIA</td>
+                <td>VENDA</td>
+                <td>(0,n) — uma fantasia pode estar em nenhuma ou em várias vendas.</td>
+            </tr>
+            <tr>
+                <td>REFERE</td>
+                <td>VENDA</td>
+                <td>TROCA</td>
+                <td>(0,n) — uma venda pode ter nenhuma ou várias trocas.</td>
+            </tr>
+            <tr>
+                <td>REFERE</td>
+                <td>TROCA</td>
+                <td>VENDA</td>
+                <td>(1,1) — uma troca se refere a uma e somente uma venda.</td>
+            </tr>
+            <tr>
+                <td>DEVOLVE</td>
+                <td>FANTASIA</td>
+                <td>TROCA</td>
+                <td>(0,n) — uma fantasia pode ser devolvida em nenhuma ou em várias trocas.</td>
+            </tr>
+            <tr>
+                <td>DEVOLVE</td>
+                <td>TROCA</td>
+                <td>FANTASIA</td>
+                <td>(1,1) — uma troca devolve uma e somente uma fantasia.</td>
+            </tr>
+            <tr>
+                <td>RECEBE</td>
+                <td>FANTASIA</td>
+                <td>TROCA</td>
+                <td>(0,n) — uma fantasia pode ser entregue em nenhuma ou em várias trocas.</td>
+            </tr>
+            <tr>
+                <td>RECEBE</td>
+                <td>TROCA</td>
+                <td>FANTASIA</td>
+                <td>(1,1) — uma troca entrega uma e somente uma fantasia no lugar da devolvida.</td>
+            </tr>
+            <tr>
+                <td>REGISTRA</td>
+                <td>VENDA</td>
+                <td>CAIXA</td>
+                <td>(1,1) — uma venda é registrada em uma e somente uma movimentação de caixa.</td>
+            </tr>
+            <tr>
+                <td>REGISTRA</td>
+                <td>CAIXA</td>
+                <td>VENDA</td>
+                <td>(0,1) — uma movimentação de caixa se refere a nenhuma ou a uma venda (se for compra, não tem venda).
+                </td>
+            </tr>
+            <tr>
+                <td>GERA</td>
+                <td>COMPRA</td>
+                <td>CAIXA</td>
+                <td>(1,1) — uma compra gera uma e somente uma movimentação de caixa (a saída do dinheiro).</td>
+            </tr>
+            <tr>
+                <td>GERA</td>
+                <td>CAIXA</td>
+                <td>COMPRA</td>
+                <td>(0,1) — uma movimentação de caixa se refere a nenhuma ou a uma compra (se for venda, não tem
+                    compra).</td>
+            </tr>
+            <tr>
+                <td>CONFERE</td>
+                <td>FECHAMENTO_CAIXA</td>
+                <td>CAIXA</td>
+                <td>(1,n) — um fechamento confere uma ou várias movimentações de caixa.</td>
+            </tr>
+            <tr>
+                <td>CONFERE</td>
+                <td>CAIXA</td>
+                <td>FECHAMENTO_CAIXA</td>
+                <td>(0,1) — uma movimentação é conferida em nenhum ou em um fechamento (nenhum = ainda não fechada).
+                </td>
+            </tr>
+            <tr>
+                <td>RESPONSAVEL</td>
+                <td>FUNCIONARIO</td>
+                <td>COMPRA</td>
+                <td>(0,n) — um funcionário é responsável por nenhuma ou várias compras.</td>
+            </tr>
+            <tr>
+                <td>RESPONSAVEL</td>
+                <td>COMPRA</td>
+                <td>FUNCIONARIO</td>
+                <td>(1,1) — uma compra tem um e somente um funcionário responsável.</td>
+            </tr>
+            <tr>
+                <td>ENTRA</td>
+                <td>COMPRA</td>
+                <td>FANTASIA</td>
+                <td>(1,n) — uma compra traz uma ou várias fantasias, cada uma com quantidade de entrada e custo.</td>
+            </tr>
+            <tr>
+                <td>ENTRA</td>
+                <td>FANTASIA</td>
+                <td>COMPRA</td>
+                <td>(0,n) — uma fantasia pode estar em nenhuma ou em várias compras.</td>
+            </tr>
+            <tr>
+                <td>FORNECE</td>
+                <td>FORNECEDOR</td>
+                <td>FANTASIA</td>
+                <td>(1,n) — um fornecedor fornece uma ou várias fantasias.</td>
+            </tr>
+            <tr>
+                <td>FORNECE</td>
+                <td>FANTASIA</td>
+                <td>FORNECEDOR</td>
+                <td>(1,1) — uma fantasia é fornecida por um e somente um fornecedor.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Cliente:</strong> pessoa que compra na loja; o cadastro é opcional e há um registro genérico para vendas
+        sem cadastro.</p>
+    <p><strong>Funcionário:</strong> pessoa que realiza e registra as vendas e as compras.</p>
+    <p><strong>Fantasia:</strong> produto comercializado, identificado por nome, gênero, tamanho e categoria, com preços
+        de varejo e de atacado e controle de estoque.</p>
+    <p><strong>Venda:</strong> registro de uma compra feita por um cliente na loja, com data, tipo (varejo ou atacado) e
+        forma de pagamento. Seus itens ficam em CONTEM.</p>
+    <p><strong>Troca:</strong> registro da troca de uma fantasia vendida por outra; a loja não devolve o valor, então a
+        troca não gera movimentação de caixa.</p>
+    <p><strong>Fornecedor:</strong> empresa que vende as fantasias para a loja.</p>
+    <p><strong>Compra:</strong> entrada de mercadoria na loja, feita por um funcionário responsável, com data e as
+        fantasias recebidas (quantidade de entrada e custo, em ENTRA).</p>
+    <p><strong>Caixa:</strong> movimentação financeira da loja. Cada venda gera uma entrada e cada compra gera uma
+        saída. Uma movimentação pertence a uma venda <em>ou</em> a uma compra, nunca às duas.</p>
+    <p><strong>Fechamento de caixa:</strong> conferência periódica (normalmente diária) das movimentações, comparando o
+        valor esperado com o valor contado.</p>
+
+    <h3>1.1 Encomenda, entrega e atacado</h3>
+    <p>Esses pontos não são entidades; ficam como atributos e regras:</p>
+    <ul>
+        <li><strong>Encomenda:</strong> o item da venda (CONTEM) tem o atributo FL_ENCOMENDA. Quando vale 1, a fantasia
+            não estava em estoque e foi pedida ao fornecedor; a entrada acontece depois, em uma COMPRA.</li>
+        <li><strong>Entrega:</strong> TP_ENTREGA na VENDA (RETIRADA, CORREIO ou EXCURSAO). Correio ou excursão só são
+            aceitos com VL_TOTAL de R$ 200,00 ou mais.</li>
+        <li><strong>Atacado:</strong> TP_VENDA é ATACADO quando a soma das quantidades dos itens é 6 ou mais; caso
+            contrário, VAREJO. Em atacado vale VL_ATACADO da fantasia.</li>
+    </ul>
+
+    <h2>2. Fluxo de dados</h2>
+    <ol>
+        <li><strong>Venda:</strong> o funcionário identifica o cliente (cadastrado ou o registro genérico), escolhe as
+            fantasias e quantidades e confere o estoque. O sistema grava VENDA e os itens em CONTEM, define varejo ou
+            atacado, baixa o QTD_ESTOQUE (item não encomendado) e grava uma entrada em CAIXA.</li>
+        <li><strong>Encomenda:</strong> sem estoque, o item é gravado com FL_ENCOMENDA = 1 e a fantasia é pedida ao
+            fornecedor. Não há baixa de estoque até a mercadoria chegar.</li>
+        <li><strong>Troca:</strong> o funcionário localiza a VENDA, informa a fantasia devolvida e a entregue. O sistema
+            grava TROCA, aumenta o estoque da devolvida e diminui o da entregue. Não há movimentação de caixa.</li>
+        <li><strong>Compra:</strong> ao receber a mercadoria, o funcionário responsável grava COMPRA e os itens em
+            ENTRA, o estoque aumenta e o sistema grava uma saída em CAIXA.</li>
+        <li><strong>Fechamento de caixa:</strong> no fim do dia, o sistema soma as movimentações ainda sem fechamento, o
+            funcionário informa o valor contado, e o sistema grava FECHAMENTO_CAIXA com a diferença e vincula as
+            movimentações a ele.</li>
+        <li><strong>Auditoria:</strong> toda inclusão, alteração ou exclusão em tabelas sensíveis é gravada
+            automaticamente na tabela LOG_AUDITORIA (seção 6).</li>
+    </ol>
+
+    <h2>3. SGBD e conjunto de caracteres</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Escolha</th>
+                <th>Justificativa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SGBD</td>
+                <td>MySQL 8</td>
+                <td>Gratuito, muito documentado, roda em um computador comum da loja e atende o volume pequeno (uma
+                    unidade, poucos usuários). Suporta CHECK (8.0.16+), triggers e colunas geradas.</td>
+            </tr>
+            <tr>
+                <td>Mecanismo</td>
+                <td>InnoDB</td>
+                <td>Tem transações e chaves estrangeiras. Uma venda mexe em VENDA, CONTEM, estoque e CAIXA; tudo deve
+                    gravar junto (COMMIT) ou nada (ROLLBACK). MyISAM não oferece isso.</td>
+            </tr>
+            <tr>
+                <td>Conjunto de caracteres</td>
+                <td>utf8mb4, collation utf8mb4_0900_ai_ci</td>
+                <td>Aceita acentos e cedilha (Fantasia, Excursão, Pierrô) e emojis em observações. A collation ignora
+                    acento e maiúscula nas buscas (buscar "pirata" encontra "Pirata").</td>
+            </tr>
+            <tr>
+                <td>Dinheiro</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não usa FLOAT, que gera erro de arredondamento em valores.</td>
+            </tr>
+            <tr>
+                <td>Datas</td>
+                <td>DATE e DATETIME</td>
+                <td>DATE para data de negócio; DATETIME para registro de log com hora.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Convenções do dicionário</h2>
+    <h3>4.1 Notação das expressões</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Símbolo</th>
+                <th>Significado</th>
+                <th>Exemplo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>{ }</code></td>
+                <td>Identificador (chave primária) da entidade</td>
+                <td>{ID_FANTASIA}</td>
+            </tr>
+            <tr>
+                <td><code>/ /</code></td>
+                <td>Chave estrangeira (vem de outra entidade)</td>
+                <td>/ID_FORNECEDOR/</td>
+            </tr>
+            <tr>
+                <td><code>* *</code></td>
+                <td>Atributo derivado, calculado a partir de outros</td>
+                <td>*VL_TOTAL*</td>
+            </tr>
+            <tr>
+                <td><code>( )</code></td>
+                <td>Atributo opcional (aceita NULL)</td>
+                <td>(NR_TELEFONE)</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>4.2 Prefixos de atributos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Prefixo</th>
+                <th>Uso</th>
+                <th>Exemplo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_</td>
+                <td>Identificador numérico (chave primária ou estrangeira)</td>
+                <td>ID_VENDA</td>
+            </tr>
+            <tr>
+                <td>CD_</td>
+                <td>Código de negócio, não gerado pelo sistema</td>
+                <td>CD_REFERENCIA</td>
+            </tr>
+            <tr>
+                <td>NM_</td>
+                <td>Nome</td>
+                <td>NM_FANTASIA</td>
+            </tr>
+            <tr>
+                <td>DS_</td>
+                <td>Descrição ou texto livre</td>
+                <td>DS_OBSERVACAO</td>
+            </tr>
+            <tr>
+                <td>NR_</td>
+                <td>Número de documento ou contato (guardado como texto)</td>
+                <td>NR_CNPJ, NR_TELEFONE</td>
+            </tr>
+            <tr>
+                <td>TP_</td>
+                <td>Tipo ou categoria com lista fechada de valores</td>
+                <td>TP_VENDA</td>
+            </tr>
+            <tr>
+                <td>ST_</td>
+                <td>Situação</td>
+                <td>ST_ATIVO</td>
+            </tr>
+            <tr>
+                <td>FL_</td>
+                <td>Indicador verdadeiro/falso (0 ou 1)</td>
+                <td>FL_ENCOMENDA</td>
+            </tr>
+            <tr>
+                <td>DT_</td>
+                <td>Data ou data e hora</td>
+                <td>DT_VENDA</td>
+            </tr>
+            <tr>
+                <td>VL_</td>
+                <td>Valor em reais</td>
+                <td>VL_VAREJO</td>
+            </tr>
+            <tr>
+                <td>QTD_</td>
+                <td>Quantidade</td>
+                <td>QTD_ESTOQUE</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Entidades e tabelas usam nome em maiúsculas, sem acento, no singular (FANTASIA). Relacionamentos com atributos
+        viram tabela própria (CONTEM, ENTRA).</p>
+
+    <h2>5. Dicionário por entidade</h2>
+    <p>Para cada entidade: expressão (notação), leitura, tabela física e índices. "Nulo" indica se o atributo aceita
+        vazio.</p>
+
+    <h3>5.1 CLIENTE</h3>
+    <div class="caixa">CLIENTE = {ID_CLIENTE} + NM_CLIENTE + (NR_CPF) + (NR_TELEFONE) + (DS_EMAIL) + FL_GENERICO +
+        DT_CADASTRO</div>
+    <p><strong>Leitura:</strong> cada cliente tem um identificador, nome, indicador de registro genérico e data de
+        cadastro; CPF, telefone e e-mail são opcionais. O registro com FL_GENERICO = 1 (ID_CLIENTE = 1) é usado nas
+        vendas sem cadastro.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_CLIENTE (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador do cliente</td>
+            </tr>
+            <tr>
+                <td>NM_CLIENTE</td>
+                <td>VARCHAR(100)</td>
+                <td>Não</td>
+                <td>Nome (no genérico: "CLIENTE NÃO CADASTRADO")</td>
+            </tr>
+            <tr>
+                <td>NR_CPF</td>
+                <td>CHAR(11)</td>
+                <td>Sim</td>
+                <td>CPF, só dígitos; único quando informado</td>
+            </tr>
+            <tr>
+                <td>NR_TELEFONE</td>
+                <td>VARCHAR(15)</td>
+                <td>Sim</td>
+                <td>Telefone com DDD</td>
+            </tr>
+            <tr>
+                <td>DS_EMAIL</td>
+                <td>VARCHAR(120)</td>
+                <td>Sim</td>
+                <td>E-mail para contato</td>
+            </tr>
+            <tr>
+                <td>FL_GENERICO</td>
+                <td>TINYINT(1)</td>
+                <td>Não</td>
+                <td>1 = registro genérico (padrão 0)</td>
+            </tr>
+            <tr>
+                <td>DT_CADASTRO</td>
+                <td>DATE</td>
+                <td>Não</td>
+                <td>Data do cadastro</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_CLIENTE); UNIQUE (NR_CPF) — o MySQL aceita vários NULL em índice único;
+        INDEX (NM_CLIENTE) para busca no balcão.</p>
+
+    <h3>5.2 FUNCIONARIO</h3>
+    <div class="caixa">FUNCIONARIO = {ID_FUNCIONARIO} + NM_FUNCIONARIO + TP_PERFIL + ST_ATIVO</div>
+    <p><strong>Leitura:</strong> cada funcionário tem identificador, nome, perfil de acesso (DONO ou VENDEDOR) e
+        situação ativo/inativo. Funcionário que saiu fica inativo e não é apagado, para não perder o histórico das
+        vendas.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_FUNCIONARIO (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>NM_FUNCIONARIO</td>
+                <td>VARCHAR(100)</td>
+                <td>Não</td>
+                <td>Nome</td>
+            </tr>
+            <tr>
+                <td>TP_PERFIL</td>
+                <td>ENUM('DONO','VENDEDOR')</td>
+                <td>Não</td>
+                <td>Perfil de acesso (seção 7)</td>
+            </tr>
+            <tr>
+                <td>ST_ATIVO</td>
+                <td>TINYINT(1)</td>
+                <td>Não</td>
+                <td>1 = ativo, 0 = inativo (padrão 1)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_FUNCIONARIO); INDEX (NM_FUNCIONARIO).</p>
+
+    <h3>5.3 FORNECEDOR</h3>
+    <div class="caixa">FORNECEDOR = {ID_FORNECEDOR} + NM_FORNECEDOR + NR_CNPJ + (NR_TELEFONE) + (DS_ENDERECO)</div>
+    <p><strong>Leitura:</strong> cada fornecedor tem identificador, nome e CNPJ; telefone e endereço são opcionais. Um
+        fornecedor fornece uma ou várias fantasias.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_FORNECEDOR (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador (CNPJ é chave alternativa, não a principal)</td>
+            </tr>
+            <tr>
+                <td>NM_FORNECEDOR</td>
+                <td>VARCHAR(100)</td>
+                <td>Não</td>
+                <td>Razão social ou nome fantasia</td>
+            </tr>
+            <tr>
+                <td>NR_CNPJ</td>
+                <td>CHAR(14)</td>
+                <td>Não</td>
+                <td>CNPJ, só dígitos</td>
+            </tr>
+            <tr>
+                <td>NR_TELEFONE</td>
+                <td>VARCHAR(15)</td>
+                <td>Sim</td>
+                <td>Telefone com DDD</td>
+            </tr>
+            <tr>
+                <td>DS_ENDERECO</td>
+                <td>VARCHAR(200)</td>
+                <td>Sim</td>
+                <td>Endereço</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_FORNECEDOR); UNIQUE (NR_CNPJ).</p>
+
+    <h3>5.4 FANTASIA</h3>
+    <div class="caixa">FANTASIA = {ID_FANTASIA} + /ID_FORNECEDOR/ + NM_FANTASIA + TP_GENERO + DS_TAMANHO + DS_CATEGORIA
+        + VL_VAREJO + VL_ATACADO + QTD_ESTOQUE + QTD_ESTOQUE_MIN</div>
+    <p><strong>Leitura:</strong> cada fantasia tem identificador, um fornecedor, nome, gênero, tamanho, categoria, preço
+        de varejo, preço de atacado, estoque atual e estoque mínimo. Quando QTD_ESTOQUE fica igual ou abaixo de
+        QTD_ESTOQUE_MIN, a fantasia entra no aviso de pedido ao fornecedor.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_FANTASIA (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>ID_FORNECEDOR (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Fornecedor da fantasia (toda fantasia tem fornecedor)</td>
+            </tr>
+            <tr>
+                <td>NM_FANTASIA</td>
+                <td>VARCHAR(100)</td>
+                <td>Não</td>
+                <td>Nome (ex.: Pirata, Princesa)</td>
+            </tr>
+            <tr>
+                <td>TP_GENERO</td>
+                <td>ENUM('M','F','U')</td>
+                <td>Não</td>
+                <td>Masculino, feminino ou unissex</td>
+            </tr>
+            <tr>
+                <td>DS_TAMANHO</td>
+                <td>VARCHAR(10)</td>
+                <td>Não</td>
+                <td>Tamanho (2, 4, 6, P, M, G...)</td>
+            </tr>
+            <tr>
+                <td>DS_CATEGORIA</td>
+                <td>VARCHAR(40)</td>
+                <td>Não</td>
+                <td>Ex.: infantil, adulto, acessório</td>
+            </tr>
+            <tr>
+                <td>VL_VAREJO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Preço de varejo (maior que 0)</td>
+            </tr>
+            <tr>
+                <td>VL_ATACADO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Preço de atacado (maior que 0 e menor ou igual ao varejo)</td>
+            </tr>
+            <tr>
+                <td>QTD_ESTOQUE</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Estoque atual (não pode ser negativo)</td>
+            </tr>
+            <tr>
+                <td>QTD_ESTOQUE_MIN</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Estoque mínimo para o aviso (padrão 0)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_FANTASIA); INDEX (ID_FORNECEDOR) para a FK; UNIQUE (NM_FANTASIA,
+        TP_GENERO, DS_TAMANHO) para não duplicar o produto; INDEX (DS_CATEGORIA).</p>
+
+    <h3>5.5 VENDA</h3>
+    <div class="caixa">VENDA = {ID_VENDA} + /ID_CLIENTE/ + /ID_FUNCIONARIO/ + DT_VENDA + TP_VENDA + TP_PAGAMENTO +
+        TP_ENTREGA + *VL_TOTAL*</div>
+    <p><strong>Leitura:</strong> cada venda tem identificador, um cliente, um funcionário, data, tipo (varejo ou
+        atacado), forma de pagamento e forma de entrega. O valor total é derivado: soma de QTD_VENDIDA × VL_PRATICADO
+        dos itens.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_VENDA (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>ID_CLIENTE (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Cliente (1 = genérico)</td>
+            </tr>
+            <tr>
+                <td>ID_FUNCIONARIO (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Funcionário que realizou a venda</td>
+            </tr>
+            <tr>
+                <td>DT_VENDA</td>
+                <td>DATETIME</td>
+                <td>Não</td>
+                <td>Data e hora</td>
+            </tr>
+            <tr>
+                <td>TP_VENDA</td>
+                <td>ENUM('VAREJO','ATACADO')</td>
+                <td>Não</td>
+                <td>ATACADO a partir de 6 peças</td>
+            </tr>
+            <tr>
+                <td>TP_PAGAMENTO</td>
+                <td>ENUM('DINHEIRO','PIX','DEBITO','CREDITO')</td>
+                <td>Não</td>
+                <td>Forma de pagamento</td>
+            </tr>
+            <tr>
+                <td>TP_ENTREGA</td>
+                <td>ENUM('RETIRADA','CORREIO','EXCURSAO')</td>
+                <td>Não</td>
+                <td>Correio e excursão só com total a partir de R$ 200,00</td>
+            </tr>
+            <tr>
+                <td>VL_TOTAL</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Derivado: soma dos itens, gravado no fechamento da venda</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_VENDA); INDEX (ID_CLIENTE); INDEX (ID_FUNCIONARIO); INDEX (DT_VENDA)
+        para relatórios por período.</p>
+
+    <h3>5.6 CONTEM (itens da venda)</h3>
+    <div class="caixa">CONTEM = {/ID_VENDA/ + /ID_FANTASIA/} + QTD_VENDIDA + VL_PRATICADO + FL_ENCOMENDA</div>
+    <p><strong>Leitura:</strong> cada item é identificado pela venda e pela fantasia juntas, e guarda a quantidade, o
+        valor praticado (varejo ou atacado, congelado na data) e se foi encomenda. É o item da venda: sem ele não se
+        sabe quanto cada fantasia vendeu nem a que preço.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_VENDA (PK, FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Venda</td>
+            </tr>
+            <tr>
+                <td>ID_FANTASIA (PK, FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Fantasia vendida</td>
+            </tr>
+            <tr>
+                <td>QTD_VENDIDA</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Quantidade (maior que 0)</td>
+            </tr>
+            <tr>
+                <td>VL_PRATICADO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Valor unitário cobrado (pode ter desconto)</td>
+            </tr>
+            <tr>
+                <td>FL_ENCOMENDA</td>
+                <td>TINYINT(1)</td>
+                <td>Não</td>
+                <td>1 = sem estoque, pedida ao fornecedor (padrão 0)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_VENDA, ID_FANTASIA); INDEX (ID_FANTASIA) para consultar o histórico de
+        vendas de uma fantasia.</p>
+
+    <h3>5.7 TROCA</h3>
+    <div class="caixa">TROCA = {ID_TROCA} + /ID_VENDA/ + /ID_FANTASIA_DEVOLVIDA/ + /ID_FANTASIA_ENTREGUE/ + QTD_TROCADA
+        + DT_TROCA</div>
+    <p><strong>Leitura:</strong> cada troca tem identificador, a venda de origem, a fantasia devolvida, a fantasia
+        entregue no lugar, a quantidade e a data. As duas ligações com FANTASIA têm papéis diferentes e por isso têm
+        nomes diferentes. A loja não devolve dinheiro.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_TROCA (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>ID_VENDA (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Venda original</td>
+            </tr>
+            <tr>
+                <td>ID_FANTASIA_DEVOLVIDA (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Fantasia que o cliente devolveu (deve estar na venda)</td>
+            </tr>
+            <tr>
+                <td>ID_FANTASIA_ENTREGUE (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Fantasia entregue no lugar</td>
+            </tr>
+            <tr>
+                <td>QTD_TROCADA</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Quantidade trocada (maior que 0)</td>
+            </tr>
+            <tr>
+                <td>DT_TROCA</td>
+                <td>DATE</td>
+                <td>Não</td>
+                <td>Data da troca</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_TROCA); INDEX (ID_VENDA); INDEX (ID_FANTASIA_DEVOLVIDA); INDEX
+        (ID_FANTASIA_ENTREGUE).</p>
+    <div class="nota">Diferença de preço na troca: como a loja não devolve valor e o modelo não gera caixa na troca, a
+        fantasia entregue deve ter valor igual ou menor ao da devolvida, ou o cliente faz uma nova venda pela diferença.
+        [Confirmar essa regra com a loja.]</div>
+
+    <h3>5.8 CAIXA</h3>
+    <div class="caixa">CAIXA = {ID_CAIXA} + (/ID_VENDA/) + (/ID_COMPRA/) + (/ID_FECHAMENTO/) + TP_MOVIMENTO +
+        VL_MOVIMENTO + DT_MOVIMENTO</div>
+    <p><strong>Leitura:</strong> cada movimentação tem identificador, tipo (entrada ou saída), valor e data. Ela vem de
+        uma venda (entrada) ou de uma compra (saída), nunca das duas. ID_FECHAMENTO fica vazio até a conferência.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_CAIXA (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>ID_VENDA (FK)</td>
+                <td>INT</td>
+                <td>Sim</td>
+                <td>Venda de origem (só entradas); único</td>
+            </tr>
+            <tr>
+                <td>ID_COMPRA (FK)</td>
+                <td>INT</td>
+                <td>Sim</td>
+                <td>Compra de origem (só saídas); único</td>
+            </tr>
+            <tr>
+                <td>ID_FECHAMENTO (FK)</td>
+                <td>INT</td>
+                <td>Sim</td>
+                <td>Fechamento que conferiu; vazio = em aberto</td>
+            </tr>
+            <tr>
+                <td>TP_MOVIMENTO</td>
+                <td>ENUM('ENTRADA','SAIDA')</td>
+                <td>Não</td>
+                <td>Sentido do dinheiro</td>
+            </tr>
+            <tr>
+                <td>VL_MOVIMENTO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Valor (maior que 0)</td>
+            </tr>
+            <tr>
+                <td>DT_MOVIMENTO</td>
+                <td>DATETIME</td>
+                <td>Não</td>
+                <td>Data e hora</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Restrição de exclusividade (CHECK):</strong>
+        <code>(ID_VENDA IS NOT NULL AND ID_COMPRA IS NULL AND TP_MOVIMENTO='ENTRADA') OR (ID_COMPRA IS NOT NULL AND ID_VENDA IS NULL AND TP_MOVIMENTO='SAIDA')</code>.
+    </p>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_CAIXA); UNIQUE (ID_VENDA); UNIQUE (ID_COMPRA); INDEX (ID_FECHAMENTO);
+        INDEX (DT_MOVIMENTO).</p>
+
+    <h3>5.9 FECHAMENTO_CAIXA</h3>
+    <div class="caixa">FECHAMENTO_CAIXA = {ID_FECHAMENTO} + DT_FECHAMENTO + *VL_ESPERADO* + VL_CONTADO + *VL_DIFERENCA*
+    </div>
+    <p><strong>Leitura:</strong> cada fechamento tem identificador, data, valor esperado (entradas menos saídas
+        conferidas), valor contado e diferença. Diferença diferente de zero precisa de explicação em log.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_FECHAMENTO (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>DT_FECHAMENTO</td>
+                <td>DATETIME</td>
+                <td>Não</td>
+                <td>Data e hora do fechamento</td>
+            </tr>
+            <tr>
+                <td>VL_ESPERADO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Derivado: soma das entradas menos soma das saídas</td>
+            </tr>
+            <tr>
+                <td>VL_CONTADO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Valor contado no caixa</td>
+            </tr>
+            <tr>
+                <td>VL_DIFERENCA</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Derivado: contado menos esperado</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_FECHAMENTO); INDEX (DT_FECHAMENTO).</p>
+
+    <h3>5.10 COMPRA</h3>
+    <div class="caixa">COMPRA = {ID_COMPRA} + /ID_FUNCIONARIO/ + DT_COMPRA + *VL_TOTAL*</div>
+    <p><strong>Leitura:</strong> cada compra tem identificador, um funcionário responsável, data e valor total (soma de
+        QTD_ENTRADA × VL_CUSTO dos itens).</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_COMPRA (PK)</td>
+                <td>INT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>ID_FUNCIONARIO (FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Funcionário responsável</td>
+            </tr>
+            <tr>
+                <td>DT_COMPRA</td>
+                <td>DATETIME</td>
+                <td>Não</td>
+                <td>Data e hora do recebimento</td>
+            </tr>
+            <tr>
+                <td>VL_TOTAL</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Derivado: soma dos itens</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_COMPRA); INDEX (ID_FUNCIONARIO); INDEX (DT_COMPRA).</p>
+
+    <h3>5.11 ENTRA (itens da compra)</h3>
+    <div class="caixa">ENTRA = {/ID_COMPRA/ + /ID_FANTASIA/} + QTD_ENTRADA + VL_CUSTO</div>
+    <p><strong>Leitura:</strong> cada item é identificado pela compra e pela fantasia juntas, e guarda a quantidade que
+        entrou e o custo unitário.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_COMPRA (PK, FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Compra</td>
+            </tr>
+            <tr>
+                <td>ID_FANTASIA (PK, FK)</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Fantasia recebida</td>
+            </tr>
+            <tr>
+                <td>QTD_ENTRADA</td>
+                <td>INT</td>
+                <td>Não</td>
+                <td>Quantidade recebida (maior que 0)</td>
+            </tr>
+            <tr>
+                <td>VL_CUSTO</td>
+                <td>DECIMAL(10,2)</td>
+                <td>Não</td>
+                <td>Custo unitário (maior que 0)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_COMPRA, ID_FANTASIA); INDEX (ID_FANTASIA).</p>
+
+    <h2>6. Log e auditoria</h2>
+    <p>O registro de alterações usa três mecanismos do MySQL 8:</p>
+    <ol>
+        <li><strong>Tabela LOG_AUDITORIA, alimentada por triggers.</strong> Triggers AFTER INSERT, AFTER UPDATE e AFTER
+            DELETE nas tabelas FANTASIA, VENDA, CONTEM, TROCA, CAIXA, FECHAMENTO_CAIXA e CLIENTE gravam uma linha a cada
+            operação.</li>
+        <li><strong>Binary log (log_bin = ON, binlog_format = ROW).</strong> Permite restaurar o banco até um instante
+            (point-in-time recovery) com o backup mais o binlog.</li>
+        <li><strong>Error log do MySQL</strong> para falhas do servidor.</li>
+    </ol>
+    <div class="caixa">LOG_AUDITORIA = {ID_LOG} + NM_TABELA + TP_OPERACAO + ID_REGISTRO + (DS_VALOR_ANTES) +
+        (DS_VALOR_DEPOIS) + DS_USUARIO_BD + DT_LOG</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID_LOG (PK)</td>
+                <td>BIGINT AUTO_INCREMENT</td>
+                <td>Não</td>
+                <td>Identificador</td>
+            </tr>
+            <tr>
+                <td>NM_TABELA</td>
+                <td>VARCHAR(30)</td>
+                <td>Não</td>
+                <td>Tabela alterada</td>
+            </tr>
+            <tr>
+                <td>TP_OPERACAO</td>
+                <td>ENUM('INSERT','UPDATE','DELETE')</td>
+                <td>Não</td>
+                <td>Operação</td>
+            </tr>
+            <tr>
+                <td>ID_REGISTRO</td>
+                <td>VARCHAR(40)</td>
+                <td>Não</td>
+                <td>Chave do registro alterado</td>
+            </tr>
+            <tr>
+                <td>DS_VALOR_ANTES</td>
+                <td>JSON</td>
+                <td>Sim</td>
+                <td>Valores antes (UPDATE e DELETE)</td>
+            </tr>
+            <tr>
+                <td>DS_VALOR_DEPOIS</td>
+                <td>JSON</td>
+                <td>Sim</td>
+                <td>Valores depois (INSERT e UPDATE)</td>
+            </tr>
+            <tr>
+                <td>DS_USUARIO_BD</td>
+                <td>VARCHAR(80)</td>
+                <td>Não</td>
+                <td>Preenchido por USER() do MySQL</td>
+            </tr>
+            <tr>
+                <td>DT_LOG</td>
+                <td>DATETIME</td>
+                <td>Não</td>
+                <td>Data e hora (padrão CURRENT_TIMESTAMP)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Índices:</strong> PRIMARY KEY (ID_LOG); INDEX (NM_TABELA, ID_REGISTRO); INDEX (DT_LOG).</p>
+    <p><strong>Regras do log:</strong> a tabela só recebe INSERT (nenhum perfil faz UPDATE ou DELETE nela); no log de
+        CLIENTE, os campos de CPF, telefone e e-mail são gravados mascarados; os logs são mantidos por 5 anos.</p>
+
+    <h2>7. Acesso por operação</h2>
+    <p>Dois perfis: <strong>DONO</strong> (gestão) e <strong>VENDEDOR</strong> (atendimento). C = inserir, R =
+        consultar, U = alterar, D = excluir. "—" = sem acesso.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Entidade</th>
+                <th>DONO</th>
+                <th>VENDEDOR</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CLIENTE</td>
+                <td>C R U D</td>
+                <td>C R U</td>
+                <td>Exclusão só pelo dono (pedido de eliminação, LGPD)</td>
+            </tr>
+            <tr>
+                <td>FUNCIONARIO</td>
+                <td>C R U</td>
+                <td>R</td>
+                <td>Inativa em vez de excluir</td>
+            </tr>
+            <tr>
+                <td>FORNECEDOR</td>
+                <td>C R U</td>
+                <td>R</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>FANTASIA</td>
+                <td>C R U</td>
+                <td>R</td>
+                <td>Preço e estoque mínimo só pelo dono; estoque muda por venda, troca e compra</td>
+            </tr>
+            <tr>
+                <td>VENDA</td>
+                <td>C R</td>
+                <td>C R</td>
+                <td>Sem alteração depois de gravada; correção por estorno do dono</td>
+            </tr>
+            <tr>
+                <td>CONTEM</td>
+                <td>C R</td>
+                <td>C R</td>
+                <td>Gravado junto com a venda</td>
+            </tr>
+            <tr>
+                <td>TROCA</td>
+                <td>C R</td>
+                <td>C R</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>CAIXA</td>
+                <td>R</td>
+                <td>R</td>
+                <td>Gravado pelo sistema a cada venda e compra; ID_FECHAMENTO atualizado só pelo fechamento</td>
+            </tr>
+            <tr>
+                <td>FECHAMENTO_CAIXA</td>
+                <td>C R</td>
+                <td>—</td>
+                <td>Só o dono fecha o caixa</td>
+            </tr>
+            <tr>
+                <td>COMPRA</td>
+                <td>C R</td>
+                <td>R</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ENTRA</td>
+                <td>C R</td>
+                <td>R</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>LOG_AUDITORIA</td>
+                <td>R</td>
+                <td>—</td>
+                <td>Gravado só pelos triggers</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>8. LGPD (Lei nº 13.709/2018)</h2>
+    <h3>8.1 Dados pessoais identificados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dado</th>
+                <th>Titular</th>
+                <th>Classificação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>NM_CLIENTE, NR_CPF, NR_TELEFONE, DS_EMAIL</td>
+                <td>Cliente</td>
+                <td>Dado pessoal comum</td>
+            </tr>
+            <tr>
+                <td>NM_FUNCIONARIO</td>
+                <td>Funcionário</td>
+                <td>Dado pessoal comum</td>
+            </tr>
+            <tr>
+                <td>NM_FORNECEDOR, NR_CNPJ, NR_TELEFONE</td>
+                <td>Fornecedor (pessoa jurídica)</td>
+                <td>Fora da LGPD, salvo se for empresário individual com dados de pessoa física</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Dados pessoais sensíveis</strong> (art. 5º, II: saúde, religião, origem racial, biometria etc.): o
+        sistema não coleta nenhum. Como a loja vende fantasias infantis, o sistema também não guarda dados de crianças
+        (nome, idade ou foto); o cliente é sempre o adulto que compra.</p>
+    <h3>8.2 Base legal e retenção</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dado / finalidade</th>
+                <th>Base legal</th>
+                <th>Retenção sugerida</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cadastro de cliente (identificar e contatar)</td>
+                <td>Consentimento (art. 7º, I), coletado no cadastro, que é opcional</td>
+                <td>Enquanto o cliente comprar; após 24 meses sem compra, anonimizar ou excluir</td>
+            </tr>
+            <tr>
+                <td>Venda, itens e caixa (registro da compra)</td>
+                <td>Execução de contrato (art. 7º, V) e obrigação legal fiscal (art. 7º, II)</td>
+                <td>5 anos, pelo prazo tributário; depois, anonimizar o cliente</td>
+            </tr>
+            <tr>
+                <td>Dados de funcionário</td>
+                <td>Obrigação legal e execução de contrato de trabalho</td>
+                <td>Conforme a legislação trabalhista; no sistema, fica o mínimo (nome e perfil)</td>
+            </tr>
+            <tr>
+                <td>LOG_AUDITORIA</td>
+                <td>Legítimo interesse (art. 7º, IX): segurança e prevenção de fraude</td>
+                <td>5 anos, com dados pessoais mascarados</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Prazos de retenção são sugestões do grupo; confirmar com a contabilidade da loja.</p>
+    <h3>8.3 Medidas</h3>
+    <ul>
+        <li>CPF, telefone e e-mail só se o cliente quiser; venda sem cadastro usa o registro genérico (minimização, art.
+            6º, III).</li>
+        <li>Direitos do titular (art. 18): consulta, correção e eliminação são atendidos pelo DONO (seção 7). Quando há
+            vendas ligadas ao cliente, a eliminação é feita por anonimização (nome trocado por "ANONIMIZADO", CPF,
+            telefone e e-mail apagados), preservando a venda.</li>
+        <li>Acesso por perfil (seção 7), senha individual por funcionário e backup com acesso restrito.</li>
+        <li>Conexão ao banco só na rede local da loja; nada de dados de cliente em planilhas soltas.</li>
+    </ul>
+
+    <h2>9. Restrições de integridade</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Regra</th>
+                <th>Mecanismo no MySQL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Toda fantasia tem fornecedor</td>
+                <td>FANTASIA.ID_FORNECEDOR NOT NULL + FOREIGN KEY</td>
+            </tr>
+            <tr>
+                <td>Toda venda tem cliente (genérico se não cadastrado)</td>
+                <td>VENDA.ID_CLIENTE NOT NULL + FK; registro ID 1 criado na instalação</td>
+            </tr>
+            <tr>
+                <td>Estoque nunca negativo</td>
+                <td>CHECK (QTD_ESTOQUE &gt;= 0)</td>
+            </tr>
+            <tr>
+                <td>Valores e quantidades positivos</td>
+                <td>CHECK (&gt; 0) em QTD_VENDIDA, VL_PRATICADO, QTD_ENTRADA, VL_CUSTO, QTD_TROCADA, VL_MOVIMENTO</td>
+            </tr>
+            <tr>
+                <td>Atacado nunca mais caro que varejo</td>
+                <td>CHECK (VL_ATACADO &lt;= VL_VAREJO)</td>
+            </tr>
+            <tr>
+                <td>Correio ou excursão só a partir de R$ 200,00</td>
+                <td>CHECK (TP_ENTREGA = 'RETIRADA' OR VL_TOTAL &gt;= 200.00)</td>
+            </tr>
+            <tr>
+                <td>Atacado a partir de 6 peças</td>
+                <td>Trigger calcula TP_VENDA pela soma de QTD_VENDIDA</td>
+            </tr>
+            <tr>
+                <td>Caixa vem de venda ou de compra, nunca das duas</td>
+                <td>CHECK de exclusividade (seção 5.8) + UNIQUE em ID_VENDA e ID_COMPRA</td>
+            </tr>
+            <tr>
+                <td>Fantasia devolvida na troca deve estar na venda</td>
+                <td>Trigger BEFORE INSERT em TROCA consulta CONTEM</td>
+            </tr>
+            <tr>
+                <td>Troca não gera caixa</td>
+                <td>Nenhuma FK de TROCA para CAIXA</td>
+            </tr>
+            <tr>
+                <td>Movimentação fechada não muda</td>
+                <td>Trigger BEFORE UPDATE/DELETE em CAIXA recusa se ID_FECHAMENTO não for nulo</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <p><strong>Histórico de versões:</strong> v1.0 — Entrega 1 · v2.1 (06/11/2026) — Entrega 2: inclusão de CAIXA,
+        FECHAMENTO_CAIXA, COMPRA, TROCA e itens de venda e compra; cardinalidades corrigidas; notação, prefixos, log,
+        acesso por operação e LGPD completos.</p>
+
+</body>
+
+</html>
