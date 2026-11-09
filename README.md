@@ -361,6 +361,45 @@ Inconsistências propositais (uma por consulta de auditoria, para a demonstraç�
 
 O uso de IA para gerar a massa está documentado na seção 6.
 
+- 6. USO DE INTELIGÊNCIA ARTIFICIAL
+
+Durante o desenvolvimento do projeto de banco de dados da empresa Lolly Fantasias, foram utilizadas as ferramentas ChatGPT (OpenAI) e Claude (Anthropic) como apoio em diferentes etapas do trabalho. As ferramentas auxiliaram na organização das informações, na estruturação da documentação e na revisão textual.
+
+A seguir, são apresentados os registros dos principais usos, conforme os critérios solicitados.
+
+- 6.1. ChatGPT – Organização do levantamento de informações e processos
+
+| Item | Registro |
+|---|---|
+| Ferramenta e etapa | ChatGPT (OpenAI) – organização do levantamento de informações, processos e regras de negócio da Lolly Fantasias. |
+| Motivação | Organizar as informações obtidas durante a entrevista e a visita técnica, facilitando a identificação dos processos realizados pela empresa e a elaboração da documentação. |
+| Prompt(s) utilizados | “Organize as informações desta entrevista em tópicos, mantendo os detalhes apresentados e separando os processos realizados pela empresa.” |
+| Resposta recebida | A ferramenta apresentou uma organização das informações em tópicos, separando aspectos como vendas, estoque, fornecedores, compras, entregas e trocas. |
+| Fontes consultadas e verificadas | As informações foram verificadas com base na entrevista realizada com o funcionário da Lolly Fantasias e nas observações feitas durante a visita técnica. |
+| Trechos rejeitados ou corrigidos | Algumas informações foram ajustadas quando não correspondiam exatamente ao funcionamento da empresa. Situações que não foram confirmadas durante a entrevista não foram tratadas como regras definitivas. |
+| Justificativa da escolha final | Foram mantidas as informações que correspondiam ao relato do funcionário e às observações realizadas, pois representavam melhor a realidade da empresa. |
+| Reflexão crítica | A ferramenta ajudou na organização do conteúdo, mas não tinha conhecimento direto sobre a rotina da loja. Por isso, foi necessário conferir as sugestões para evitar a inclusão de processos ou regras que não existiam na empresa. |
+
+- 6.2. Claude – Levantamento, dicionário de dados e documentação (README)
+
+| Item | Registro |
+|---|---|
+| Ferramenta e etapa | Claude (Anthropic) – organização do levantamento da Entrega 2, estruturação do dicionário de dados e do README. |
+| Motivação | Separar corretamente o que foi observado durante a visita do que o funcionário informou na entrevista, além de organizar a documentação conforme o esqueleto fornecido pelo professor. |
+| Prompt(s) utilizados | “Estou confusa sobre separar o que observamos do que o entrevistado disse no levantamento. Me ajude a organizar.” / “Com base no esqueleto do professor, organize o README e o dicionário de dados.” |
+| Resposta recebida | A ferramenta sugeriu a separação entre observações e entrevista, a organização das regras de negócio, dos requisitos e dos problemas identificados, além da estruturação do dicionário de dados. |
+| Fontes consultadas e verificadas | O conteúdo foi conferido com as respostas do funcionário, com as informações registradas durante a visita e com o modelo de documentação da disciplina. |
+| Trechos rejeitados ou corrigidos | Itens que não foram confirmados na entrevista, como o cancelamento de vendas, não foram tratados como regras definitivas. Cadastro de clientes, caixa e fechamento de caixa foram descritos como propostas do sistema, e não como processos que já existem na loja. |
+| Justificativa da escolha final | Foram mantidas as informações que correspondiam ao relato e às observações, diferenciando claramente o funcionamento atual da loja das funcionalidades propostas para o sistema. |
+| Reflexão crítica | A ferramenta pode misturar o que existe na empresa com o que seria desejável no sistema ou completar lacunas com suposições. Foi necessário revisar cada informação para manter a fidelidade à realidade da Lolly Fantasias. |
+
+- 6.3. Considerações finais sobre o uso da inteligência artificial
+
+O ChatGPT e o Claude foram utilizados como ferramentas de apoio durante o desenvolvimento do projeto, contribuindo para organizar informações e melhorar a documentação.
+
+Entretanto, as respostas não foram consideradas automaticamente corretas. As sugestões precisaram ser analisadas e verificadas de acordo com as informações obtidas na visita técnica, os conteúdos estudados na disciplina e as orientações fornecidas pelo professor.
+
+A utilização da inteligência artificial não substituiu a análise das informações nem as decisões tomadas durante o desenvolvimento do trabalho. Seu uso contribuiu como recurso complementar para o aprendizado e para a execução das atividades, sendo necessário manter uma postura crítica e responsável diante das respostas fornecidas.
 
 
 
