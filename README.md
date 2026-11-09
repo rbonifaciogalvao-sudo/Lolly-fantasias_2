@@ -361,7 +361,7 @@ Inconsistências propositais (uma por consulta de auditoria, para a demonstraç�
 
 O uso de IA para gerar a massa está documentado na seção 6.
 
-- 6. USO DE INTELIGÊNCIA ARTIFICIAL
+- 6 USO DE INTELIGÊNCIA ARTIFICIAL
 
 Durante o desenvolvimento do projeto de banco de dados da empresa Lolly Fantasias, foram utilizadas as ferramentas ChatGPT (OpenAI) e Claude (Anthropic) como apoio em diferentes etapas do trabalho. As ferramentas auxiliaram na organização das informações, na estruturação da documentação e na revisão textual.
 
