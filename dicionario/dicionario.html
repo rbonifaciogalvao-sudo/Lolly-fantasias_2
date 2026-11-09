@@ -428,9 +428,21 @@
               <td><code>[ | ]</code></td>
               <td>escolha obrigatória entre alternativas</td>
             </tr>
-            <tr>
+             <tr>
               <td><code>@</code></td>
               <td>identificador (chave primária)</td>
+            </tr>
+            <tr>
+              <td><code>{ }</code></td>
+              <td>repetição: o elemento pode ocorrer várias vezes</td>
+            </tr>
+            <tr>
+              <td><code>* *</code></td>
+              <td>comentário explicativo, que não faz parte do dado</td>
+            </tr>
+            <tr>
+              <td><code>/ /</code></td>
+              <td>separador de alternativas dentro de [ ]</td>
             </tr>
           </tbody>
         </table>
@@ -441,7 +453,6 @@
         <code>IN_</code> indicador booleano.</p>
       <p><strong>Versão:</strong> v1.0, 7 de novembro de 2026. Qualquer alteração de estrutura gera nova revisão
         registrada aqui.</p>
-
       <h2 id="dicionario">4. Dicionário de dados por entidade</h2>
       <p class="lead">As colunas Obrigatório, Único, Valores permitidos e Padrão são as restrições de integridade
         implementadas no script SQL.</p>
@@ -761,11 +772,12 @@
       <section id="venda" class="ent">
         <h3><code>VENDA</code></h3>
         <p class="def">Venda feita pela loja, no varejo ou no atacado.</p>
-        <p class="formal">
-          <code>VENDA = @ID_VENDA + TP_VENDA + TP_FORMA_PAGAMENTO + DT_VENDA + ID_CLIENTE + ID_FUNCIONARIO + IN_ENCOMENDA + (TP_ENTREGA + DT_ENTREGA)</code>
+         <p class="formal">
+          <code>VENDA = @ID_VENDA + TP_VENDA + TP_FORMA_PAGAMENTO + DT_VENDA + ID_CLIENTE + ID_FUNCIONARIO + IN_ENCOMENDA + (TP_ENTREGA + DT_ENTREGA) + {ID_FANTASIA} *uma ou mais fantasias, registradas em CONTEM*</code>
         </p>
-        <p><strong>Leitura:</strong> O grupo ( TP_ENTREGA + DT_ENTREGA ) é opcional: só existe quando a venda é
-          entregue, e nesse caso os dois campos são preenchidos.</p>
+             <p><strong>Leitura:</strong> O grupo ( TP_ENTREGA + DT_ENTREGA ) é opcional: só existe quando a venda é
+          entregue, e nesse caso os dois campos são preenchidos. <code>{ID_FANTASIA}</code> indica que a venda tem
+          uma ou mais fantasias, guardadas em CONTEM.</p>
         <div class="scroll">
           <table>
             <thead>
