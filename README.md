@@ -44,7 +44,7 @@ Evidências da organização:
 - Endereço: R. Alexandrino Pedroso, 264 - Loja 16 - Canindé, São Paulo - SP, 03031-030
 - Contato da loja: (11) 94708-2631
 - Fotos (arquivos no repositório):
-- ![Foto do estabelecimento](evidencias/fotoDoEstabelecimento.jpeg)
+- ![Foto do estabelecimento](levantamento/fotoDoEstabelecimento.jpeg)
 
 Responsável pela organização: nome e telefone de quem atendeu o grupo — o professor pode entrar em contato para confirmar as informações.
 
