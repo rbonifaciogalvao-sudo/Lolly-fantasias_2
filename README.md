@@ -10,6 +10,30 @@ Modelagem e implementação do banco de dados de uma loja de fantasias do Canind
 
 
 1.1 Revisão do Modelo Conceitual 
+
+
+| Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
+|---|---|---|
+| Remover ITEM_VENDA do DER. Na E1 faltava quantidade e preço por item vendido. | ITEM_VENDA saiu; VENDA e FANTASIA se ligam pelo relacionamento CONTEM, com QT_ITEM e VL_PRATICADO. | O item é o próprio relacionamento N:N entre venda e fantasia, e assim a quantidade e o preço de cada venda ficam registrados. |
+| Identificador da venda e cardinalidade do cliente. | VENDA tem ID_VENDA e CLIENTE participa de EFETUA com (1,1) do lado da venda. | Toda venda tem exatamente um cliente (RN05). |
+| Quantidade e valor unitário da parte de compra. | QT_SOLICITADA, QT_ENTRADA e VL_CUSTO ficaram no relacionamento ENTRA, entre COMPRA e FANTASIA. | Quantidade e custo dependem do par compra + fantasia. |
+| Não ligar o caixa (fechamento) ao funcionário. | CAIXA e FECHAMENTO_CAIXA não se ligam a FUNCIONARIO. | Não há regra da loja que exija registrar quem fechou o caixa. |
+| Não ligar o fornecedor à compra. | FORNECEDOR liga-se somente a FANTASIA (FORNECE). | Cada fantasia tem um único fornecedor (RN08). |
+| Nomes e prefixos dos atributos e relacionamentos. | Atributos com ID_, NM_, DT_, DS_, NR_, QT_, VL_, TP_, IN_ e relacionamentos com nome. | Padronização do dicionário de dados. |
+| Trocas de produtos (processo confirmado depois). | Entidade TROCA, ligada à venda e duas vezes à fantasia (DEVOLVE e RECEBE). | A loja troca o produto e precisa guardar a fantasia devolvida e a entregue (RN04). |
+| Entrevista sem comprovação: faltava dizer quem, quando e como, e o responsável não aparecia na foto. | O README relata Leonidas, a data, o local e a integrante presente, e o levantamento separa observação de entrevista. A foto da entrevista com o responsável está no repositório. | A entrevista no local é a evidência de que a organização é real. |
+| Processos com cobertura de 25%. | Estão descritos 13 processos da loja (pagamento, trocas, atacado, compras, recebimento, estoque e outros), 3 propostos pelo sistema e os que ficaram de fora com justificativa. | O banco reúne todos os dados da loja, e P3 (caixa) não tinha processo. |
+| Regra “todo pedido exige cliente” contradizia o cadastro opcional. | RN05: venda sem cadastro usa o cliente padrão 1, e VENDA.ID_CLIENTE é NOT NULL. | A loja vende sem exigir dados, mas toda venda precisa de um cliente. |
+| Regra “toda fantasia tem fornecedor” contradizia o (0,n) do DER. | RN08 e FANTASIA.ID_FORNECEDOR NOT NULL; FORNECE com (1,1) do lado da fantasia. | Impede fantasia sem fornecedor. |
+| CONTÉM com (1,n) do lado de FANTASIA obrigava toda fantasia a já ter sido vendida. | Cardinalidade corrigida para (0,n) do lado de FANTASIA. | Uma fantasia nova pode ficar sem vendas. |
+| Regras sem restrições organizacionais. | Acrescentadas RN06 (LGPD), RN13 e RN14 (caixa e fechamento) e RN01/RN10 (preço de atacado e varejo), cada uma com sua origem. | Cobrir as regras de vendas, caixa e legais da organização. |
+| Caixa e entrada de mercadoria ausentes do DER. | Entidades CAIXA, FECHAMENTO_CAIXA e COMPRA, com o relacionamento ENTRA. | Fechamento de caixa e entrada no estoque eram requisitos sem entidade. |
+| Chave estrangeira desenhada como identificador, e CNPJ marcado como identificador de FORNECEDOR. | Os identificadores são ID_VENDA, ID_FORNECEDOR e os demais ID_; o CNPJ virou UNIQUE; as FKs só aparecem no modelo lógico. | FK é decisão do modelo lógico. |
+| Requisitos num único parágrafo, sem numeração, com requisito técnico entre os funcionais. | RF01 a RF17 e RNF01 a RNF07 em tabela, com código e problema atendido. | Cada requisito é rastreável aos problemas P1 a P4. |
+| Dicionário sem versão, com prefixos não aplicados, log sem mecanismo e LGPD incompleta. | Versão v1.0 de 07/11/2026, prefixos aplicados, log pelo `general_log` do MySQL, base legal (art. 7º, I) e eliminação a pedido do titular. | Atender aos itens do modelo do dicionário. |
+| Anotações de rascunho no dicionário. | Removidas. | Documento final. |
+| Uso de IA resumido num único registro. | Seção 6 separada por ferramenta e etapa. | Documentar cada uso relevante. |
+
 - Caracterização da organização
 
 Nome e natureza: Lolly Fantasias, loja comercial que vende fantasias infantis e adultas, no varejo e no atacado.
