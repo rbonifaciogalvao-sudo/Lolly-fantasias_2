@@ -193,7 +193,7 @@ Notação e software do DER
 - Generalização/especialização: o DER não tem; nenhuma estratégia de conversão foi necessária.
 - Modelo lógico: [diagrama/modelo_logico.png](diagrama/modelo_logico.png), criado no brModelo.
 
-![Modelo lógico](diagramas/modelo_logico.png)
+![Modelo lógico](diagrama/modelo_logico.png)
 
 - 1.3 Chaves primárias e estrangeiras
 
