@@ -354,7 +354,7 @@ Dados 100% fictícios (nomes, telefones, CNPJs e valores), gerados para o perío
 | FANTASIA | 48 | Catálogo fictício de 48 modelos em 6 categorias (Halloween, super-heróis, profissões, princesas, festa junina e carnaval). |
 | COMPRA | 52 | 5 compras do estoque inicial e 47 recebimentos em 15 dias (cerca de 2 por semana, como a loja informou). |
 | ENTRA | 100 | Um a vários itens por compra, divididos por fornecedor. |
-| FORNECEDOR | 5 | Fornecedores escolhidos por prazo e preço, com prazos de 3 a 5 dias. |
+| FORNECEDOR | 5 | Fornecedores escolhidos por prazo e preço, com prazos de 3 a 8 dias. |
 | CLIENTE | 131 | Cliente padrão + 130 cadastrados; 299 das 565 vendas (cerca de 53%) são sem cadastro, como a loja vende hoje. Há 32 clientes cadastrados sem compra. |
 | FUNCIONARIO | 2 | O responsável da loja e uma vendedora temporária (pico de outubro). |
 | TROCA | 20 | Cerca de 3,5% das vendas. |
