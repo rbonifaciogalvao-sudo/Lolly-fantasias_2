@@ -7,10 +7,6 @@
 -- Para rodar do zero: execute o arquivo inteiro em um MySQL 8 (Workbench ou linha de comando).
 -- =====================================================================
 
-DROP DATABASE IF EXISTS lolly_fantasias;
-CREATE DATABASE lolly_fantasias CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE lolly_fantasias;
-
 -- ---------------------------------------------------------------------
 -- 1. TABELAS E CONSTRAINTS
 -- ---------------------------------------------------------------------
