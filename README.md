@@ -48,7 +48,7 @@ Evidências da organização:
 
 Responsável pela organização: nome e telefone de quem atendeu o grupo — o professor pode entrar em contato para confirmar as informações.
 
-- Leonidas Fagundes Correa - Telefone: 11 948527676
+- Leonidas Fagundes Correa - Telefone: (11) 94708-2631
 
 Relato da entrevista 
 - Quem: Leonidas Fagundes Correa, funcionário responsável por todas as tarefas da loja. Participou do grupo a integrante Rafaela.
