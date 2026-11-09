@@ -183,17 +183,7 @@ Notação e software do DER
 
 - O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA, COMPRA, CAIXA, FECHAMENTO_CAIXA) e 12 relacionamentos (EFETUA, REALIZA, CONTEM, REFERE, RECEBE, DEVOLVE, RESPONSAVEL, ENTRA, FORNECE, REGISTRA, GERA, CONFERE). CONTEM e ENTRA são relacionamentos N:N com atributos próprios.
 
-- Apontamentos da correção da Entrega 1 (Caso A: mesma organização)
 
-| Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
-|---|---|---|
-| Remover ITEM_VENDA do DER. | ITEM_VENDA saiu; VENDA e FANTASIA se ligam pelo relacionamento CONTEM, com QT_ITEM e VL_PRATICADO. | O item é o próprio relacionamento N:N entre venda e fantasia, não uma entidade à parte. |
-| Identificador da venda e cardinalidade do cliente. | VENDA tem ID_VENDA e CLIENTE participa de EFETUA com (1,1) do lado da venda. | Toda venda tem exatamente um cliente (RN05). |
-| Quantidade e valor unitário da parte de compra. | QT_SOLICITADA, QT_ENTRADA e VL_CUSTO ficaram no relacionamento ENTRA, entre COMPRA e FANTASIA. | Quantidade e custo dependem do par compra + fantasia. A compra é a mercadoria fornecida para a loja. |
-| Não ligar o caixa (fechamento) ao funcionário. | CAIXA e FECHAMENTO_CAIXA não se ligam a FUNCIONARIO. | Não há regra da loja que exija registrar quem fechou o caixa. |
-| Não ligar o fornecedor à compra. | FORNECEDOR liga-se somente a FANTASIA (relacionamento FORNECE). | Cada fantasia tem um único fornecedor (RN08); o fornecedor de uma compra sai da fantasia comprada. |
-| Nomes e prefixos dos atributos e relacionamentos. | Atributos com ID_, NM_, DT_, DS_, NR_, QT_, VL_, TP_, IN_ e relacionamentos com nome. | Padronização do dicionário de dados. |
-| Trocas de produtos (processo confirmado depois). | Entidade TROCA, ligada à venda e duas vezes à fantasia (DEVOLVE e RECEBE). | A loja troca o produto e a troca precisa guardar a fantasia devolvida e a entregue (RN04). |
 
 
 ---
