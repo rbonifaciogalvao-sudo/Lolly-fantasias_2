@@ -331,7 +331,7 @@ Dados 100% fictícios (nomes, telefones, CNPJs e valores), gerados para o perío
 |---|---|---|
 | VENDA | 565 | 10 a 15 vendas por dia em 48 dias de funcionamento (segunda a sábado), com média de 10,6 em setembro, 12,8 em outubro (mês de Halloween) e 10,2 em novembro (G04). |
 | CONTEM | 873 | Cerca de 1,5 fantasia diferente por venda e 1.906 peças vendidas no total, com 71 vendas de atacado (6 peças ou mais). |
-| FANTASIA | 48 | Catálogo fictício de 48 modelos em 6 categorias (Halloween, super-heróis, profissões, princesas, festa junina e carnaval). [CONFIRMAR com o Leonidas a ordem de grandeza do catálogo real.] |
+| FANTASIA | 48 | Catálogo fictício de 48 modelos em 6 categorias (Halloween, super-heróis, profissões, princesas, festa junina e carnaval). |
 | COMPRA | 52 | 5 compras do estoque inicial e 47 recebimentos em 15 dias (cerca de 2 por semana, como a loja informou). |
 | ENTRA | 100 | Um a vários itens por compra, divididos por fornecedor. |
 | FORNECEDOR | 5 | Fornecedores escolhidos por prazo e preço, com prazos de 2 a 5 dias. |
