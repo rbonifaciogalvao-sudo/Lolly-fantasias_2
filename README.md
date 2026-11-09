@@ -97,7 +97,7 @@ Processos realizados pela loja
 11. Troca de produtos: troca por outra fantasia, sem devolução do valor.
 12. Atendimento pós-venda: dúvidas e reclamações por WhatsApp.
 13. Conservação das fantasias: guardadas em sacolas.
-14. A loja emite nota fiscal.
+
 
 Processos propostos pelo sistema (ainda não existem):
 
@@ -105,6 +105,7 @@ Processos propostos pelo sistema (ainda não existem):
 
 - Fechamento de caixa: registra a conferência dos valores ao final do expediente, comparando o saldo esperado com o dinheiro e os pagamentos recebidos, identificando possíveis diferenças.
 
+- Cadastro de clientes: registra nome, telefone, endereço e a autorização LGPD do cliente. Hoje a loja vende sem cadastro.
 Processos prováveis que ficaram de fora, com justificativa
 
 | Processo | Por que não entrou |
@@ -173,8 +174,8 @@ Requisitos funcionais
 | RN13 | Um movimento de caixa vem de uma venda ou de uma compra, nunca das duas. | Evita associar incorretamente uma movimentação de caixa a uma venda e uma compra ao mesmo tempo. | Proposta do sistema |
 | RN14 | O fechamento confere os movimentos; a diferença é o valor contado menos o esperado. | Permite identificar diferenças entre os valores esperados e os valores realmente contabilizados no caixa. | Proposta do sistema |
 
-- Regras prováveis que ficaram de fora: regra de cancelamento de venda (não confirmada), prazo legal de troca, idade mínima (não se aplica a fantasias).
-Modelo Lógico Relacional 
+- Regras prováveis que ficaram de fora: cancelamento de venda (não confirmado na entrevista); prazo legal de troca (a loja não informou um prazo, e o sistema só registra a troca); emissão de nota fiscal (a loja emite a nota, mas esse processo acontece fora do sistema proposto, que não guarda dados fiscais como número, série ou chave da nota); idade mínima (não se aplica a fantasias).
+- Modelo Lógico Relacional 
 ![Modelo lógico relacional da Lolly Fantasias](diagrama/modelo_logico.jpeg)
 
 Notação e software do DER
