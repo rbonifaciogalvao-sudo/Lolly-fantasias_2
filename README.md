@@ -151,7 +151,7 @@ Modelo Lógico Relacional
 
 Notação e software do DER
 
-- O DER foi criado no **brModelo**, na notação pedida (entidades, losangos, cardinalidades (mín, máx), círculos de atributos e identificadores preenchidos, sem chaves estrangeiras). Arquivo: [diagramas/der_conceitual.png](diagramas/der_conceitual.png).
+- O DER foi criado no **brModelo**, na notação pedida (entidades, losangos, cardinalidades (mín, máx), círculos de atributos e identificadores preenchidos, sem chaves estrangeiras). Arquivo: [diagrama/der_conceitual.png](diagramas/der_conceitual.png).
 
 - O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA, COMPRA, CAIXA, FECHAMENTO_CAIXA) e 12 relacionamentos (EFETUA, REALIZA, CONTEM, REFERE, RECEBE, DEVOLVE, RESPONSAVEL, ENTRA, FORNECE, REGISTRA, GERA, CONFERE). CONTEM e ENTRA são relacionamentos N:N com atributos próprios.
 
