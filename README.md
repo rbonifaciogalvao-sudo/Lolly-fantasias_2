@@ -412,7 +412,21 @@ A seguir, são apresentados os registros dos principais usos, conforme os crité
 | Justificativa da escolha final | Foram mantidas as informações que correspondiam ao relato e às observações, diferenciando claramente o funcionamento atual da loja das funcionalidades propostas para o sistema. |
 | Reflexão crítica | A ferramenta pode misturar o que existe na empresa com o que seria desejável no sistema ou completar lacunas com suposições. Foi necessário revisar cada informação para manter a fidelidade à realidade da Lolly Fantasias. |
 
-- 6.3. Considerações finais sobre o uso da inteligência artificial
+
+6.3. Claude – Geração da massa de dados
+
+| Item | Registro |
+|---|---|
+| Ferramenta e etapa | Claude (Anthropic) – geração da massa de dados fictícia do `docs/script.sql`, de 14/09/2026 a 07/11/2026. |
+| Motivação | A massa precisava seguir o volume real da loja, sem dados reais, e escrever à mão mais de 500 vendas com itens e caixa seria inviável. |
+| Prompt(s) utilizados | “Termine o trabalho da Entrega 2 com base no esqueleto do professor e na correção da Entrega 1, incluindo a massa de dados e o script SQL.” (ajustar para o texto real) |
+| Resposta recebida | Script com 11 tabelas e massa com 565 vendas, 873 itens de venda, 52 compras, 100 itens de compra, 131 clientes, 48 fantasias, 617 movimentos de caixa e 8 fechamentos, com inconsistências propositais para as consultas de auditoria. |
+| Fontes consultadas e verificadas | Os volumes foram conferidos com a entrevista (10 a 15 vendas por dia, recebimento duas vezes por semana, atacado a partir de 6 peças, entrega a partir de R$ 200). O script foi executado no SQLize (MySQL 8.0). |
+| Trechos rejeitados ou corrigidos | Os comandos `DROP DATABASE`, `CREATE DATABASE` e `USE` foram comentados porque o SQLize não executava o script com eles. (Acrescentar outros ajustes feitos à mão.) |
+| Justificativa da escolha final | A massa cobre as situações da loja (vendas sem cadastro, atacado e varejo, trocas, divergências de recebimento, estoque baixo e fechamentos com e sem diferença) e permite demonstrar as consultas. |
+| Reflexão crítica | O catálogo, os preços e os fornecedores são inventados. As vendas por dia são mais regulares que na realidade, e as inconsistências foram plantadas de propósito. Por isso os resultados das consultas foram conferidos. |
+
+- 6.4. Considerações finais sobre o uso da inteligência artificial
 
 O ChatGPT e o Claude foram utilizados como ferramentas de apoio durante o desenvolvimento do projeto, contribuindo para organizar informações e melhorar a documentação.
 
