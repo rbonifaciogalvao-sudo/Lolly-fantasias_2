@@ -1,1 +1,1435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dicionário de dados – Lolly Fantasias</title>
+  <style>
+    :root {
+      --bg: #faf8fc;
+      --surface: #fff;
+      --ink: #221c2b;
+      --muted: #675f73;
+      --line: #e3dcec;
+      --accent: #5b2a86;
+      --soft: #efe6f7;
+      --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root {
+        --bg: #17131d;
+        --surface: #201a29;
+        --ink: #eee9f4;
+        --muted: #a79fb4;
+        --line: #3a3248;
+        --accent: #c9a4ee;
+        --soft: #2e2340
+      }
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 1rem
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.55 var(--sans)
+    }
+
+    a {
+      color: var(--accent)
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 15rem minmax(0, 1fr);
+      gap: 2.5rem;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem
+    }
+
+    aside {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+      max-height: calc(100vh - 3rem);
+      overflow: auto
+    }
+
+    aside ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    aside a {
+      display: block;
+      padding: .2rem .6rem;
+      border-left: 2px solid var(--line);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: .9rem
+    }
+
+    aside .sub a {
+      padding-left: 1.4rem;
+      font: .82rem var(--mono)
+    }
+
+    aside a:hover {
+      border-left-color: var(--accent);
+      background: var(--soft)
+    }
+
+    h1 {
+      font: 600 clamp(2rem, 4vw, 2.8rem)/1.1 var(--serif);
+      margin: 0 0 .5rem
+    }
+
+    h2 {
+      font: 600 1.7rem var(--serif);
+      margin: 3rem 0 .6rem;
+      padding-top: .5rem;
+      border-top: 1px solid var(--line)
+    }
+
+    h3 {
+      margin: 0 0 .3rem;
+      font: 600 1.3rem var(--mono);
+      color: var(--accent)
+    }
+
+    h3 code {
+      font: inherit
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 0 0 1rem
+    }
+
+    .ent {
+      margin-top: 2.4rem
+    }
+
+    .def {
+      color: var(--muted);
+      margin: 0 0 .5rem;
+      max-width: 70ch
+    }
+
+    .formal code {
+      display: block;
+      padding: .6rem .8rem;
+      background: var(--soft);
+      border-radius: 6px;
+      font: .88rem/1.5 var(--mono);
+      overflow-x: auto;
+      white-space: pre-wrap
+    }
+
+    p {
+      max-width: 75ch
+    }
+
+    .scroll {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      margin: .6rem 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    .ent table {
+      min-width: 58rem
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: .5rem .7rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      font-size: .92rem
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--soft);
+      font-size: .85rem
+    }
+
+    td code {
+      font: .88rem var(--mono)
+    }
+
+    .tp {
+      font: .82rem var(--mono);
+      white-space: nowrap
+    }
+
+    ul.defs {
+      max-width: 75ch;
+      padding-left: 1.2rem
+    }
+
+    ul.defs li {
+      margin: .3rem 0
+    }
+
+    @media (max-width:52rem) {
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem 3rem
+      }
+
+      aside {
+        position: static;
+        max-height: none
+      }
+
+      aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .3rem
+      }
+
+      aside a,
+      aside .sub a {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: .15rem .7rem
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #000
+      }
+
+      aside {
+        display: none
+      }
+
+      .layout {
+        display: block;
+        padding: 0
+      }
+
+      .ent {
+        break-inside: avoid
+      }
+
+      .scroll {
+        overflow: visible
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside aria-label="Índice">
+      <ul>
+        <li><a href="#conceitual">1. Modelo conceitual</a></li>
+        <li><a href="#fluxo">2. Fluxo de dados</a></li>
+        <li><a href="#convencoes">3. Convenções</a></li>
+        <li><a href="#dicionario">4. Dicionário</a></li>
+        <li class="sub"><a href="#cliente">CLIENTE</a></li>
+        <li class="sub"><a href="#funcionario">FUNCIONARIO</a></li>
+        <li class="sub"><a href="#fornecedor">FORNECEDOR</a></li>
+        <li class="sub"><a href="#fantasia">FANTASIA</a></li>
+        <li class="sub"><a href="#venda">VENDA</a></li>
+        <li class="sub"><a href="#contem">CONTEM</a></li>
+        <li class="sub"><a href="#troca">TROCA</a></li>
+        <li class="sub"><a href="#compra">COMPRA</a></li>
+        <li class="sub"><a href="#entra">ENTRA</a></li>
+        <li class="sub"><a href="#caixa">CAIXA</a></li>
+        <li class="sub"><a href="#fechamento_caixa">FECHAMENTO_CAIXA</a></li>
+        <li><a href="#log">5. Log de acesso</a></li>
+        <li><a href="#acesso">6. Acesso e LGPD</a></li>
+      </ul>
+    </aside>
+    <main>
+      <h1>Dicionário de dados da Lolly Fantasias</h1>
+      <p class="lead">Loja de fantasias do Canindé, em São Paulo. As regras de negócio citadas (RN01 a RN14) estão
+        descritas no README.md do repositório.</p>
+
+      <h2 id="conceitual">1. Modelo conceitual</h2>
+      <p>O modelo representa uma loja que compra fantasias de fornecedores e as vende a clientes, no varejo e no
+        atacado. Cada venda reúne uma ou mais fantasias, e a loja troca o produto quando necessário. As compras de
+        reposição, os movimentos de caixa e o fechamento do caixa completam o ciclo.</p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Entidade</th>
+              <th>Relaciona-se com</th>
+              <th>Cardinalidade</th>
+              <th>Leitura</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CLIENTE</td>
+              <td>VENDA</td>
+              <td>1:N</td>
+              <td>Um cliente efetua várias vendas; toda venda tem exatamente um cliente.</td>
+            </tr>
+            <tr>
+              <td>FUNCIONARIO</td>
+              <td>VENDA</td>
+              <td>1:N</td>
+              <td>Um funcionário realiza várias vendas; toda venda é feita por um funcionário.</td>
+            </tr>
+            <tr>
+              <td>VENDA</td>
+              <td>FANTASIA</td>
+              <td>N:N, por CONTEM</td>
+              <td>Uma venda tem uma ou mais fantasias; uma fantasia aparece em várias vendas.</td>
+            </tr>
+            <tr>
+              <td>VENDA</td>
+              <td>TROCA</td>
+              <td>1:N</td>
+              <td>Uma venda pode ter várias trocas; toda troca se refere a uma venda.</td>
+            </tr>
+            <tr>
+              <td>TROCA</td>
+              <td>FANTASIA</td>
+              <td>N:1, duas vezes</td>
+              <td>Toda troca recebe uma fantasia e devolve outra; uma fantasia participa de várias trocas.</td>
+            </tr>
+            <tr>
+              <td>FUNCIONARIO</td>
+              <td>COMPRA</td>
+              <td>1:N</td>
+              <td>Um funcionário é responsável por várias compras; toda compra tem um responsável.</td>
+            </tr>
+            <tr>
+              <td>COMPRA</td>
+              <td>FANTASIA</td>
+              <td>N:N, por ENTRA</td>
+              <td>Uma compra traz uma ou mais fantasias; uma fantasia é comprada várias vezes.</td>
+            </tr>
+            <tr>
+              <td>FORNECEDOR</td>
+              <td>FANTASIA</td>
+              <td>1:N</td>
+              <td>Um fornecedor fornece várias fantasias; toda fantasia tem um único fornecedor.</td>
+            </tr>
+            <tr>
+              <td>VENDA</td>
+              <td>CAIXA</td>
+              <td>1:1 opcional</td>
+              <td>Toda venda registra um movimento de caixa; um movimento pode ou não vir de uma venda.</td>
+            </tr>
+            <tr>
+              <td>COMPRA</td>
+              <td>CAIXA</td>
+              <td>1:1 opcional</td>
+              <td>Toda compra gera um movimento de caixa; um movimento pode ou não vir de uma compra.</td>
+            </tr>
+            <tr>
+              <td>CAIXA</td>
+              <td>FECHAMENTO_CAIXA</td>
+              <td>N:1 opcional</td>
+              <td>Um fechamento confere vários movimentos; um movimento é conferido em no máximo um fechamento.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>CONTEM e ENTRA são entidades associativas: CONTEM liga VENDA a FANTASIA (com quantidade e valor praticado) e
+        ENTRA liga COMPRA a FANTASIA (com custo e quantidades).</p>
+      <ul class="defs">
+        <li><strong>Cliente</strong> é pessoa que compra fantasias na loja, com ou sem cadastro.</li>
+        <li><strong>Funcionário</strong> é pessoa que atende, vende e faz compras para a loja.</li>
+        <li><strong>Fornecedor</strong> é empresa de quem a loja compra as fantasias.</li>
+        <li><strong>Fantasia</strong> é modelo de fantasia, de uma categoria da época, vendido pela loja.</li>
+        <li><strong>Venda</strong> é evento em que um cliente compra uma ou mais fantasias, no varejo ou no atacado.
+        </li>
+        <li><strong>Troca</strong> é evento em que o cliente devolve uma fantasia e leva outra no lugar.</li>
+        <li><strong>Compra</strong> é pedido de mercadoria feito pela loja a um fornecedor.</li>
+        <li><strong>Caixa</strong> é registro dos movimentos financeiros das vendas e das compras.</li>
+        <li><strong>Fechamento de caixa</strong> é conferência dos movimentos do caixa em um período.</li>
+      </ul>
+
+      <h2 id="fluxo">2. Fluxo de dados</h2>
+      <p><strong>Como é hoje.</strong> O cliente chega à loja e escolhe a fantasia. O funcionário confere a
+        disponibilidade olhando as prateleiras e contando as peças à mão e, se falta na exposição, busca no estoque. O
+        cliente define a forma de pagamento e paga, e só depois a fantasia é separada e entregue (RN03). Nada disso é
+        registrado, porque a loja não tem caderno, planilha nem sistema para vendas, entradas de mercadoria ou
+        quantidades. Quando um modelo chega a 5 a 10 unidades, o funcionário pede reposição ao fornecedor, e a
+        mercadoria que chega é só acompanhada visualmente.</p>
+      <p><strong>Como será no sistema proposto.</strong> O funcionário consulta a disponibilidade em FANTASIA
+        (QT_DISPONIVEL). Confirmado o pagamento, a venda é gravada em VENDA, com os itens em CONTEM e o movimento em
+        CAIXA; se há entrega, ela guarda TP_ENTREGA e DT_ENTREGA (RN02). Uma troca grava um registro em TROCA ligado à
+        venda original (RN04). Quando QT_DISPONIVEL chega a QT_MINIMA, o sistema indica a reposição ao fornecedor
+        (RN07): o pedido gera uma COMPRA, os itens ficam em ENTRA e o recebimento atualiza QT_DISPONIVEL e o CAIXA. No
+        fim do período, FECHAMENTO_CAIXA confere os movimentos (RN14).</p>
+
+      <h2 id="convencoes">3. Convenções do dicionário</h2>
+      <p><strong>SGBD:</strong> MySQL, mecanismo InnoDB. <strong>Codificação:</strong> utf8mb4, que cobre a acentuação
+        do português em nomes e textos livres. <strong>Valores em dinheiro:</strong> o diagrama do brModelo mostra
+        FLOAT, mas o dicionário usa DECIMAL(10,2) no MySQL para evitar erros de arredondamento.</p>
+      <p><strong>Notação formal:</strong></p>
+      <div class="scroll">
+        <table style="min-width:0">
+          <thead>
+            <tr>
+              <th>Símbolo</th>
+              <th>Significado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>=</code></td>
+              <td>é composto de</td>
+            </tr>
+            <tr>
+              <td><code>+</code></td>
+              <td>e (conecta elementos obrigatórios)</td>
+            </tr>
+            <tr>
+              <td><code>( )</code></td>
+              <td>opcional</td>
+            </tr>
+            <tr>
+              <td><code>[ | ]</code></td>
+              <td>escolha obrigatória entre alternativas</td>
+            </tr>
+            <tr>
+              <td><code>@</code></td>
+              <td>identificador (chave primária)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Prefixos:</strong> <code>ID_</code> identificador (não sofre operação matemática), <code>NM_</code>
+        nome, <code>DT_</code> data, <code>DS_</code> descrição ou texto livre, <code>NR_</code> número de documento ou
+        telefone, <code>QT_</code> quantidade, <code>VL_</code> valor em dinheiro, <code>TP_</code> tipo ou categoria,
+        <code>IN_</code> indicador booleano.</p>
+      <p><strong>Versão:</strong> v1.0, 7 de novembro de 2026. Qualquer alteração de estrutura gera nova revisão
+        registrada aqui.</p>
+
+      <h2 id="dicionario">4. Dicionário de dados por entidade</h2>
+      <p class="lead">As colunas Obrigatório, Único, Valores permitidos e Padrão são as restrições de integridade
+        implementadas no script SQL.</p>
+      <section id="cliente" class="ent">
+        <h3><code>CLIENTE</code></h3>
+        <p class="def">Pessoa que compra na loja.</p>
+        <p class="formal">
+          <code>CLIENTE = @ID_CLIENTE + NM_CLIENTE + (NR_TELEFONE) + (DS_ENDERECO) + IN_AUTORIZA_LGPD</code></p>
+        <p><strong>Leitura:</strong> @ID_CLIENTE identifica o cliente; telefone e endereço vêm entre ( ) porque a loja
+          vende sem exigir dados pessoais. Toda venda precisa de um cliente, então o sistema mantém um cliente padrão
+          para as vendas sem cadastro (RN05).</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_CLIENTE</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador do cliente; não sofre operação matemática.</td>
+              </tr>
+              <tr>
+                <td><code>NM_CLIENTE</code></td>
+                <td><span class='tp'>VARCHAR(120)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Nome do cliente. No cliente padrão, “Cliente não identificado” (RN05).</td>
+              </tr>
+              <tr>
+                <td><code>NR_TELEFONE</code></td>
+                <td><span class='tp'>VARCHAR(15)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>Somente dígitos</td>
+                <td>—</td>
+                <td>Telefone de contato, usado em entregas e encomendas.</td>
+              </tr>
+              <tr>
+                <td><code>DS_ENDERECO</code></td>
+                <td><span class='tp'>VARCHAR(200)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Endereço para entrega por correio, excursão ou ônibus (RN02); vazio quando o cliente retira na loja.
+                </td>
+              </tr>
+              <tr>
+                <td><code>IN_AUTORIZA_LGPD</code></td>
+                <td><span class='tp'>BOOLEAN</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>0 ou 1</td>
+                <td>0</td>
+                <td>Indica se o cliente autorizou o uso dos dados pessoais (RN06).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_CLIENTE; índice em NM_CLIENTE (busca por nome no atendimento).</p>
+      </section>
+      <section id="funcionario" class="ent">
+        <h3><code>FUNCIONARIO</code></h3>
+        <p class="def">Pessoa que atende, vende e compra pela loja.</p>
+        <p class="formal"><code>FUNCIONARIO = @ID_FUNCIONARIO + NM_FUNCIONARIO + DS_CARGO + (NR_TELEFONE)</code></p>
+        <p><strong>Leitura:</strong> Nome e cargo são obrigatórios; o telefone é opcional.</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_FUNCIONARIO</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador do funcionário.</td>
+              </tr>
+              <tr>
+                <td><code>NM_FUNCIONARIO</code></td>
+                <td><span class='tp'>VARCHAR(120)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Nome completo; identifica quem realizou a venda ou a compra.</td>
+              </tr>
+              <tr>
+                <td><code>DS_CARGO</code></td>
+                <td><span class='tp'>VARCHAR(60)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Cargo ou função na loja.</td>
+              </tr>
+              <tr>
+                <td><code>NR_TELEFONE</code></td>
+                <td><span class='tp'>VARCHAR(15)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>Somente dígitos</td>
+                <td>—</td>
+                <td>Telefone de contato.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_FUNCIONARIO.</p>
+      </section>
+      <section id="fornecedor" class="ent">
+        <h3><code>FORNECEDOR</code></h3>
+        <p class="def">Empresa de quem a loja compra as fantasias; é escolhida por prazo e preço.</p>
+        <p class="formal"><code>FORNECEDOR = @ID_FORNECEDOR + NM_FORNECEDOR + NR_CNPJ + (NR_TELEFONE)</code></p>
+        <p><strong>Leitura:</strong> O CNPJ é obrigatório e único, o que evita cadastrar o mesmo fornecedor duas vezes.
+        </p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_FORNECEDOR</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador do fornecedor.</td>
+              </tr>
+              <tr>
+                <td><code>NM_FORNECEDOR</code></td>
+                <td><span class='tp'>VARCHAR(120)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Nome do fornecedor.</td>
+              </tr>
+              <tr>
+                <td><code>NR_CNPJ</code></td>
+                <td><span class='tp'>CHAR(14)</span></td>
+                <td>Sim</td>
+                <td>Sim</td>
+                <td>14 dígitos, sem pontuação</td>
+                <td>—</td>
+                <td>CNPJ do fornecedor.</td>
+              </tr>
+              <tr>
+                <td><code>NR_TELEFONE</code></td>
+                <td><span class='tp'>VARCHAR(15)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>Somente dígitos</td>
+                <td>—</td>
+                <td>Contato para os pedidos de reposição e de encomenda (RN07, RN11).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_FORNECEDOR; índice único em NR_CNPJ.</p>
+      </section>
+      <section id="fantasia" class="ent">
+        <h3><code>FANTASIA</code></h3>
+        <p class="def">Modelo de fantasia vendido pela loja. A loja não produz fantasias, só compra e vende.</p>
+        <p class="formal">
+          <code>FANTASIA = @ID_FANTASIA + NM_FANTASIA + VL_VENDA_VAREJO + VL_VENDA_ATACADO + TP_TAMANHO + TP_CATEGORIA + TP_GENERO + QT_DISPONIVEL + QT_MINIMA + ID_FORNECEDOR</code>
+        </p>
+        <p><strong>Leitura:</strong> Todos os campos são obrigatórios. ID_FORNECEDOR liga cada fantasia a um único
+          fornecedor (RN08), e TP_CATEGORIA guarda a categoria da época (RN12).</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_FANTASIA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador da fantasia; substitui a identificação só visual que a loja usa hoje.</td>
+              </tr>
+              <tr>
+                <td><code>NM_FANTASIA</code></td>
+                <td><span class='tp'>VARCHAR(120)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Nome ou modelo da fantasia.</td>
+              </tr>
+              <tr>
+                <td><code>VL_VENDA_VAREJO</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Preço de venda no varejo, definido a partir do custo (RN10).</td>
+              </tr>
+              <tr>
+                <td><code>VL_VENDA_ATACADO</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0 e menor ou igual a VL_VENDA_VAREJO</td>
+                <td>—</td>
+                <td>Preço de venda no atacado, a partir de 6 peças (RN01).</td>
+              </tr>
+              <tr>
+                <td><code>TP_TAMANHO</code></td>
+                <td><span class='tp'>VARCHAR(20)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Tamanho da fantasia; muitas infantis têm tamanho único, para crianças de 4 a 12 anos.</td>
+              </tr>
+              <tr>
+                <td><code>TP_CATEGORIA</code></td>
+                <td><span class='tp'>VARCHAR(40)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Categoria da época, como Halloween ou festa junina; só as da época ficam expostas (RN12).</td>
+              </tr>
+              <tr>
+                <td><code>TP_GENERO</code></td>
+                <td><span class='tp'>VARCHAR(20)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Gênero a que a fantasia se destina.</td>
+              </tr>
+              <tr>
+                <td><code>QT_DISPONIVEL</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior ou igual a 0</td>
+                <td>0</td>
+                <td>Quantidade disponível; é comparada com QT_MINIMA para pedir reposição (RN07).</td>
+              </tr>
+              <tr>
+                <td><code>QT_MINIMA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior ou igual a 0</td>
+                <td>5</td>
+                <td>Quantidade mínima antes de pedir reposição ao fornecedor; a loja repõe entre 5 e 10 unidades (RN07).
+                </td>
+              </tr>
+              <tr>
+                <td><code>ID_FORNECEDOR</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Fornecedor da fantasia (RN08).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_FANTASIA; índice em TP_CATEGORIA (listar a categoria da época); índice em
+          NM_FANTASIA; índice em ID_FORNECEDOR.</p>
+      </section>
+      <section id="venda" class="ent">
+        <h3><code>VENDA</code></h3>
+        <p class="def">Venda feita pela loja, no varejo ou no atacado.</p>
+        <p class="formal">
+          <code>VENDA = @ID_VENDA + TP_VENDA + TP_FORMA_PAGAMENTO + DT_VENDA + ID_CLIENTE + ID_FUNCIONARIO + IN_ENCOMENDA + (TP_ENTREGA + DT_ENTREGA)</code>
+        </p>
+        <p><strong>Leitura:</strong> O grupo ( TP_ENTREGA + DT_ENTREGA ) é opcional: só existe quando a venda é
+          entregue, e nesse caso os dois campos são preenchidos.</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_VENDA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador da venda.</td>
+              </tr>
+              <tr>
+                <td><code>TP_VENDA</code></td>
+                <td><span class='tp'>VARCHAR(10)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>varejo ou atacado</td>
+                <td>—</td>
+                <td>Tipo da venda; atacado vale a partir de 6 peças (RN01).</td>
+              </tr>
+              <tr>
+                <td><code>TP_FORMA_PAGAMENTO</code></td>
+                <td><span class='tp'>VARCHAR(30)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Forma de pagamento escolhida pelo cliente; a separação só ocorre após a confirmação do pagamento
+                  (RN03).</td>
+              </tr>
+              <tr>
+                <td><code>DT_VENDA</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>data atual</td>
+                <td>Data da venda.</td>
+              </tr>
+              <tr>
+                <td><code>ID_CLIENTE</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Cliente da venda; sem cadastro, usa o cliente padrão (RN05).</td>
+              </tr>
+              <tr>
+                <td><code>ID_FUNCIONARIO</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Funcionário que realizou a venda.</td>
+              </tr>
+              <tr>
+                <td><code>IN_ENCOMENDA</code></td>
+                <td><span class='tp'>BOOLEAN</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>0 ou 1</td>
+                <td>0</td>
+                <td>Indica se a venda é uma encomenda de fantasias sem estoque (RN11).</td>
+              </tr>
+              <tr>
+                <td><code>TP_ENTREGA</code></td>
+                <td><span class='tp'>VARCHAR(20)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>correio, excursao ou onibus</td>
+                <td>—</td>
+                <td>Forma de entrega; vazio quando o cliente retira na loja. A entrega só vale para compras a partir de
+                  R$ 200 (RN02).</td>
+              </tr>
+              <tr>
+                <td><code>DT_ENTREGA</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>Maior ou igual a DT_VENDA</td>
+                <td>—</td>
+                <td>Data da entrega; preenchida só quando há entrega (RN02).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_VENDA; índice em DT_VENDA (relatórios por período); índices em ID_CLIENTE e
+          ID_FUNCIONARIO.</p>
+      </section>
+      <section id="contem" class="ent">
+        <h3><code>CONTEM</code></h3>
+        <p class="def">Entidade associativa entre VENDA e FANTASIA: as fantasias de cada venda.</p>
+        <p class="formal"><code>CONTEM = @ID_VENDA + @ID_FANTASIA + VL_PRATICADO + QT_ITEM</code></p>
+        <p><strong>Leitura:</strong> A chave é composta por ID_VENDA e ID_FANTASIA: a mesma fantasia aparece uma só vez
+          por venda, com a quantidade em QT_ITEM.</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_VENDA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK, FK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Venda a que o item pertence.</td>
+              </tr>
+              <tr>
+                <td><code>ID_FANTASIA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK, FK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Fantasia vendida.</td>
+              </tr>
+              <tr>
+                <td><code>VL_PRATICADO</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Valor unitário praticado nessa venda, varejo ou atacado (RN01, RN10).</td>
+              </tr>
+              <tr>
+                <td><code>QT_ITEM</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Quantidade de peças da fantasia na venda.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK composta (ID_VENDA, ID_FANTASIA); índice em ID_FANTASIA.</p>
+      </section>
+      <section id="troca" class="ent">
+        <h3><code>TROCA</code></h3>
+        <p class="def">Troca de uma fantasia por outra. A loja troca o produto, mas não devolve o valor pago (RN04).</p>
+        <p class="formal">
+          <code>TROCA = @ID_TROCA + DT_TROCA + DS_MOTIVO + QT_TROCA + ID_VENDA + ID_FANTASIA_DEVOLVIDA + ID_FANTASIA_NOVA</code>
+        </p>
+        <p><strong>Leitura:</strong> Toda troca se refere a uma venda e envolve duas fantasias: a devolvida e a entregue
+          no lugar. Não há campo de valor devolvido, porque a loja não devolve dinheiro.</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_TROCA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador da troca.</td>
+              </tr>
+              <tr>
+                <td><code>DT_TROCA</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>data atual</td>
+                <td>Data da troca.</td>
+              </tr>
+              <tr>
+                <td><code>DS_MOTIVO</code></td>
+                <td><span class='tp'>VARCHAR(200)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Motivo da troca.</td>
+              </tr>
+              <tr>
+                <td><code>QT_TROCA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Quantidade de peças trocadas.</td>
+              </tr>
+              <tr>
+                <td><code>ID_VENDA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Venda a que a troca se refere.</td>
+              </tr>
+              <tr>
+                <td><code>ID_FANTASIA_DEVOLVIDA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Fantasia devolvida pelo cliente (RN04).</td>
+              </tr>
+              <tr>
+                <td><code>ID_FANTASIA_NOVA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Fantasia entregue no lugar (RN04).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_TROCA; índices em ID_VENDA, ID_FANTASIA_DEVOLVIDA e ID_FANTASIA_NOVA.</p>
+      </section>
+      <section id="compra" class="ent">
+        <h3><code>COMPRA</code></h3>
+        <p class="def">Compra de mercadoria feita pela loja a fornecedores.</p>
+        <p class="formal"><code>COMPRA = @ID_COMPRA + DT_PEDIDO + DT_COMPRA + ID_FUNCIONARIO + (DS_OBSERVACAO)</code>
+        </p>
+        <p><strong>Leitura:</strong> DT_PEDIDO é quando o pedido foi feito ao fornecedor e DT_COMPRA é a data da compra.
+          DS_OBSERVACAO é opcional e registra danos ou divergências no recebimento (RN09).</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_COMPRA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador da compra.</td>
+              </tr>
+              <tr>
+                <td><code>DT_PEDIDO</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Data em que o pedido foi feito ao fornecedor (RN07, RN11).</td>
+              </tr>
+              <tr>
+                <td><code>DT_COMPRA</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>data atual</td>
+                <td>Data da compra.</td>
+              </tr>
+              <tr>
+                <td><code>ID_FUNCIONARIO</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Funcionário responsável pela compra.</td>
+              </tr>
+              <tr>
+                <td><code>DS_OBSERVACAO</code></td>
+                <td><span class='tp'>VARCHAR(255)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Observações sobre produtos danificados ou divergências no recebimento (RN09).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_COMPRA; índice em DT_COMPRA (relatórios por período); índice em
+          ID_FUNCIONARIO.</p>
+      </section>
+      <section id="entra" class="ent">
+        <h3><code>ENTRA</code></h3>
+        <p class="def">Entidade associativa entre COMPRA e FANTASIA: as fantasias de cada compra.</p>
+        <p class="formal"><code>ENTRA = @ID_COMPRA + @ID_FANTASIA + VL_CUSTO + QT_SOLICITADA + QT_ENTRADA</code></p>
+        <p><strong>Leitura:</strong> Comparar QT_SOLICITADA com QT_ENTRADA mostra se o fornecedor entregou a quantidade
+          combinada (RN09).</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_COMPRA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK, FK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Compra a que o item pertence.</td>
+              </tr>
+              <tr>
+                <td><code>ID_FANTASIA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK, FK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Fantasia comprada.</td>
+              </tr>
+              <tr>
+                <td><code>VL_CUSTO</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Valor de custo unitário, base do preço de venda (RN10).</td>
+              </tr>
+              <tr>
+                <td><code>QT_SOLICITADA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Quantidade pedida ao fornecedor.</td>
+              </tr>
+              <tr>
+                <td><code>QT_ENTRADA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior ou igual a 0</td>
+                <td>—</td>
+                <td>Quantidade que realmente entrou na loja; pode ser menor que a pedida (RN09).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK composta (ID_COMPRA, ID_FANTASIA); índice em ID_FANTASIA.</p>
+      </section>
+      <section id="caixa" class="ent">
+        <h3><code>CAIXA</code></h3>
+        <p class="def">Movimentos financeiros de vendas e compras. A loja não tem caixa hoje; ele é uma proposta do
+          sistema.</p>
+        <p class="formal">
+          <code>CAIXA = @ID_MOV + [ID_VENDA | ID_COMPRA] + TP_MOV + VL_MOV + DT_MOV + (DS_MOV) + (ID_FECHAMENTO)</code>
+        </p>
+        <p><strong>Leitura:</strong> [ ID_VENDA | ID_COMPRA ] exige escolher exatamente uma origem (RN13). ID_FECHAMENTO
+          fica vazio até o movimento ser conferido em um fechamento (RN14).</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_MOV</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador do movimento.</td>
+              </tr>
+              <tr>
+                <td><code>ID_VENDA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Não (FK)</td>
+                <td>Não</td>
+                <td>Preenchido só se ID_COMPRA estiver vazio</td>
+                <td>—</td>
+                <td>Venda que gerou o movimento (RN13).</td>
+              </tr>
+              <tr>
+                <td><code>ID_COMPRA</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Não (FK)</td>
+                <td>Não</td>
+                <td>Preenchido só se ID_VENDA estiver vazio</td>
+                <td>—</td>
+                <td>Compra que gerou o movimento (RN13).</td>
+              </tr>
+              <tr>
+                <td><code>TP_MOV</code></td>
+                <td><span class='tp'>VARCHAR(10)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>entrada ou saida</td>
+                <td>—</td>
+                <td>Tipo do movimento: entrada para venda, saída para compra.</td>
+              </tr>
+              <tr>
+                <td><code>VL_MOV</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior que 0</td>
+                <td>—</td>
+                <td>Valor do movimento.</td>
+              </tr>
+              <tr>
+                <td><code>DT_MOV</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>data atual</td>
+                <td>Data do movimento.</td>
+              </tr>
+              <tr>
+                <td><code>DS_MOV</code></td>
+                <td><span class='tp'>VARCHAR(200)</span></td>
+                <td>Não</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Descrição do movimento.</td>
+              </tr>
+              <tr>
+                <td><code>ID_FECHAMENTO</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Não (FK)</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Fechamento em que o movimento foi conferido (RN14).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_MOV; índice em DT_MOV (relatórios por período); índices em ID_VENDA,
+          ID_COMPRA e ID_FECHAMENTO.</p>
+      </section>
+      <section id="fechamento_caixa" class="ent">
+        <h3><code>FECHAMENTO_CAIXA</code></h3>
+        <p class="def">Conferência do caixa em um período. A loja não faz esse procedimento hoje; ele é uma proposta do
+          sistema.</p>
+        <p class="formal">
+          <code>FECHAMENTO_CAIXA = @ID_FECHAMENTO + VL_SALDO_INICIAL + DT_FECHAMENTO + VL_CONTADO + VL_DIFERENCA</code>
+        </p>
+        <p><strong>Leitura:</strong> VL_DIFERENCA compara o valor contado com o valor esperado pelos movimentos (RN14).
+        </p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>Tipo físico</th>
+                <th>Obrigatório</th>
+                <th>Único</th>
+                <th>Valores permitidos</th>
+                <th>Padrão</th>
+                <th>Significado e relevância</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ID_FECHAMENTO</code></td>
+                <td><span class='tp'>INT</span></td>
+                <td>Sim (PK)</td>
+                <td>Sim</td>
+                <td>—</td>
+                <td>AUTO_INCREMENT</td>
+                <td>Identificador do fechamento.</td>
+              </tr>
+              <tr>
+                <td><code>VL_SALDO_INICIAL</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior ou igual a 0</td>
+                <td>0</td>
+                <td>Saldo no início do período.</td>
+              </tr>
+              <tr>
+                <td><code>DT_FECHAMENTO</code></td>
+                <td><span class='tp'>DATE</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>—</td>
+                <td>data atual</td>
+                <td>Data do fechamento.</td>
+              </tr>
+              <tr>
+                <td><code>VL_CONTADO</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Maior ou igual a 0</td>
+                <td>—</td>
+                <td>Valor contado no caixa.</td>
+              </tr>
+              <tr>
+                <td><code>VL_DIFERENCA</code></td>
+                <td><span class='tp'>DECIMAL(10,2)</span></td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Pode ser negativo</td>
+                <td>—</td>
+                <td>Valor contado menos o valor esperado (RN14).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Índices:</strong> PK ID_FECHAMENTO; índice em DT_FECHAMENTO.</p>
+      </section>
+      <h2 id="log">5. Log de acesso (metadado operacional)</h2>
+      <p>As onze tabelas ficam sob o mesmo mecanismo de auditoria do SGBD: o log geral do MySQL
+        (<code>general_log=ON</code> com <code>log_output=TABLE</code>), consultável em <code>mysql.general_log</code>.
+        A retenção e a rotação do log seguem política própria, independente da retenção dos dados de negócio.</p>
+
+      <h2 id="acesso">6. Acesso por operação e conformidade com a LGPD (metadado administrativo)</h2>
+      <div class="scroll">
+        <table style="min-width:44rem">
+          <thead>
+            <tr>
+              <th>Tabela</th>
+              <th>Ler</th>
+              <th>Inserir</th>
+              <th>Atualizar</th>
+              <th>Apagar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CLIENTE</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário</td>
+              <td>Funcionário</td>
+              <td>Responsável, a pedido do titular</td>
+            </tr>
+            <tr>
+              <td>FUNCIONARIO</td>
+              <td>Responsável</td>
+              <td>Responsável</td>
+              <td>Responsável</td>
+              <td>Responsável</td>
+            </tr>
+            <tr>
+              <td>FORNECEDOR</td>
+              <td>Funcionário, Responsável</td>
+              <td>Responsável</td>
+              <td>Responsável</td>
+              <td>Responsável</td>
+            </tr>
+            <tr>
+              <td>FANTASIA</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário, Responsável</td>
+              <td>Responsável</td>
+            </tr>
+            <tr>
+              <td>VENDA e CONTEM</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário</td>
+              <td>Funcionário</td>
+              <td>Nenhum papel; o registro fica no histórico</td>
+            </tr>
+            <tr>
+              <td>TROCA</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário</td>
+              <td>Nenhum papel</td>
+              <td>Nenhum papel</td>
+            </tr>
+            <tr>
+              <td>COMPRA e ENTRA</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário, Responsável</td>
+              <td>Funcionário, Responsável</td>
+              <td>Nenhum papel; o registro fica no histórico</td>
+            </tr>
+            <tr>
+              <td>CAIXA</td>
+              <td>Responsável</td>
+              <td>Funcionário</td>
+              <td>Nenhum papel</td>
+              <td>Nenhum papel</td>
+            </tr>
+            <tr>
+              <td>FECHAMENTO_CAIXA</td>
+              <td>Responsável</td>
+              <td>Responsável</td>
+              <td>Nenhum papel</td>
+              <td>Nenhum papel</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>CLIENTE e FUNCIONARIO guardam dados pessoais comuns (LGPD, art. 5º, I), como nome, telefone e endereço. O
+        tratamento dos dados do cliente se ampara no consentimento (art. 7º, I), registrado em IN_AUTORIZA_LGPD (RN06),
+        e a loja só guarda o que usa nas entregas e encomendas. O acesso é restrito aos papéis da tabela, e toda
+        consulta fica no log de acesso (seção 5), o que sustenta o princípio de responsabilização (art. 6º, X). Os dados
+        de cliente não são apagados por rotina: a eliminação ou a anonimização ocorre a pedido do titular (art. 18).
+        FORNECEDOR guarda, em regra, dados de pessoa jurídica (CNPJ), que não são alcançados pela LGPD, mas segue as
+        mesmas regras gerais de acesso e log.</p>
+    </main>
+  </div>
+</body>
+
+</html>
 
