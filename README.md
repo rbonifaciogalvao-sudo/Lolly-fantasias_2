@@ -1,8 +1,6 @@
-# Lolly fantasias entrega-2
-Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final Modelagem de um sistema de gestão de informações para uma organização de pequeno porte Este arquivo é o esqueleto dos artefatos finais do grupo, a serem organizados no repositório GitHub. Será corrigido exclusivamente o conteúdo da branch main do repositório — arquivos que estiverem em qualquer outra branch não serão considerados, mesmo que o link enviado aponte para ela. Preencha cada seção com o conteúdo do seu projeto. Alguns itens são documentos Markdown, outros são arquivos separados (diagramas, dicionário de dados, script .sql, massa de dados, slides) — está indicado em cada seção. Nesta etapa vocês atuam como uma software house implementando o banco de dados completo do sistema modelado na Entrega 1 e revisado na seção 1.1 — seja para uma empresa, uma ONG ou outra organização escolhida pelo grupo. Lembrete: termos como "empresa" e "negócio" usados abaixo são o vocabulário técnico padrão de modelagem de dados e se aplicam a qualquer tipo de organização, com ou sem fins lucrativos. Importante: esta etapa exige uma organização real, com evidências de existência e contato com um responsável. Se a organização da Entrega 1 era real, continue com ela — não é permitido trocá-la por outra. Se a organização da Entrega 1 era fictícia (ou não teve a existência comprovada na correção), o grupo deve procurar agora uma organização real e refazer, para ela, toda a base da Entrega 1, inclusive o DER (ver seção 1.1, Caso B). Em qualquer caso, o grupo deve manter o acesso à organização, pois pode ser necessário voltar a campo para validar regras, tirar dúvidas sobre o processo de normalização ou conferir se a massa de dados reflete a realidade observada.
+# Lolly Fantasias — Relatório Técnico Final (Entrega 2)
 
-Relatório Técnico Final (arquivo Markdown — reúne a maior parte da Dimensão Conceitual, 30%) O Relatório Técnico Final deve ser o próprio README.md da raiz da branch main, seguindo a estrutura deste esqueleto. Relatório entregue em outro arquivo (PDF, Word, outro .md, Google Docs, wiki do GitHub etc.) não será corrigido. Os demais artefatos (DER, modelo lógico, dicionário de dados, levantamento, script SQL, massa de dados, slides) ficam em arquivos separados no repositório, com link a partir do README. Integrantes Nome completo do aluno RGM Usuário do GitHub Nome RGM usuario
-
+Modelagem e implementação do banco de dados de uma loja de fantasias do Canindé (São Paulo/SP).
 
 | Nome completo do aluno | RGM | Usuário do GitHub |
 |---|---|---|
@@ -11,38 +9,55 @@ Relatório Técnico Final (arquivo Markdown — reúne a maior parte da Dimensã
 | Yago Lima de Queiroz | 48140597 | yagoqueiroz250-bit |
 
 
-1.1 Revisão do Modelo Conceitual (obrigatória, sem peso próprio — mas todo o restante da entrega é construído e avaliado sobre este modelo: um erro que permanecer no DER revisado se propaga para a conversão, a normalização, o modelo lógico e o script SQL) Caracterização da organização (todos os grupos) Repita aqui a caracterização da organização — atualizada, mesmo que a organização seja a da Entrega 1. Na Entrega 1, os erros mais comuns foram: porte sem números, problema declarado que depois não aparecia no DER, evidências fora do repositório e modelo cobrindo só parte da organização. Evite-os: Nome e natureza da organização: qual organização real o grupo escolheu (com acesso garantido para pesquisa de campo) — pode ser uma empresa (livraria, lanchonete, pet shop), uma ONG, uma associação comunitária ou outra instituição.
+1.1 Revisão do Modelo Conceitual 
+- Caracterização da organização
 
-• Lolly Fantasias. Loja especializada na venda de fantasias infantis e adultas.
+Nome e natureza: Lolly Fantasias, loja comercial com fins lucrativos que vende fantasias infantis e adultas, no varejo e no atacado.
 
-Contexto e porte: com ou sem fins lucrativos; tamanho da operação; número de pessoas envolvidas (funcionários, voluntários, membros, fiéis); volume de atividades (vendas, atendimentos, doações, rituais, eventos). Informe números, não só adjetivos (ex.: "cerca de 300 pedidos por semana", e não "grande movimento") — são eles que justificam o tamanho da massa de dados (seção 4).
+Contexto e porte: 
 
-Loja comercial com fins lucrativos, de pequeno porte, com uma unidade e uma pessoa trabalhando atualmente. Realiza vendas e atendimento aos clientes, comercializando diferentes tipos e tamanhos de fantasias. A organização trabalha com diferentes categorias de fantasias, como Halloween, super-heróis, profissões e princesas.
-A loja realiza vendas no atacado; recebe mercadoria em média duas vezes por semana...
-Problemas e necessidades identificados: qual é a "crise operacional" — o que está desorganizado hoje (planilhas soltas, papel, falta de controle de estoque/doações/cadastros etc.)? Numere cada problema (P1, P2…). Todo problema declarado aqui precisa ser resolvido pelo modelo: deve aparecer no DER e ter ao menos uma consulta gerencial no script SQL (ver a tabela de rastreabilidade da seção 1.6). O problema deve ser de gestão de informações — refazer o site ou melhorar a divulgação da organização, por exemplo, não é um problema que um banco de dados resolva.
+- Uma unidade, com uma pessoa trabalhando atualmente (o funcionário que atende, vende, repõe e compra).
+- Entre 10 e 15 vendas por dia, variando conforme o mês.
+- Recebe mercadoria em média duas vezes por semana.
+- Vende fantasias de categorias sazonais (Halloween, super-heróis, profissões, princesas, festa junina e outras); só as da época ficam expostas e as demais ficam em outro estoque.
+- Atacado a partir de 6 peças, com valor diferenciado; entrega só em compras a partir de R$ 200.
+
+
+Problemas e necessidades identificados:
 
 P1: Falta de controle de entrada e saída de fantasias.
 P2: Falta de controle de vendas realizadas.
 P3: Não existe registro de fechamento de caixa e fluxo de caixa.
 P4: Não existe uma forma organizada de saber a quantidade de fantasias disponíveis no estoque.
 
-Escopo do sistema: o banco de dados deve reunir todos os dados da organização, não só os de um setor ou processo. Mesmo que os problemas declarados se concentrem em uma área, o modelo não pode servir somente a um recorte (ex.: só o estoque de uma clínica, deixando de fora pacientes e atendimentos).
+Escopo do sistema: O banco reúne os dados de toda a loja: clientes, funcionários, fornecedores, fantasias, vendas e seus itens, trocas, compras e seus itens, movimentos de caixa e fechamentos de caixa.
+
 
 **
 
-Justificativa da escolha: por que essa organização foi escolhida e por que ela é um bom caso para o projeto? Se algum integrante trabalha na organização ou tem vínculo familiar com os responsáveis, declare isso — o vínculo não gera desconto, mas não dispensa a comprovação da entrevista com o responsável, realizada no ambiente da organização.
+Justificativa da escolha:  A loja é acessível ao grupo e não possui nenhum sistema de controle, então o projeto pode propor uma solução real para estoque, vendas e fluxo de caixa. Declaração de vínculo: uma das integrantes é sobrinha do funcionário da loja. O vínculo não dispensou a entrevista presencial no local, comprovada por foto.
 
 • A loja foi escolhida por ser acessível ao nosso grupo, por conta que uma das integrantes é sobrinha do funcionário e pela organização não possuir um sistema de controle. Dessa forma, o projeto poderá propor uma solução para auxiliar no controle de estoque, vendas e fluxo de caixa.
 
-Evidências da organização: comprove que a organização existe e que o grupo teve acesso a ela — fotos do local/da visita, link da organização no Google, endereço completo e forma de contato. Prefira o perfil da organização no Google Meu Negócio (Google Business Profile), que é a comprovação mais direta; site e redes sociais complementam. As fotos só são aceitas como arquivos JPG ou PNG dentro do repositório — fotos hospedadas fora dele (Google Drive, Imgur, anexos colados no editor do GitHub etc.) não são consideradas.
+Evidências da organização: 
 
-• https://maps.app.goo.gl/97rXVKvdabmSye7s7 • https://www.instagram.com/lollyfantasias?stkn=MWg5dmlhdmF6ZngyNQ%3D%3D • R. Alexandrino Pedroso, 264 - Loja 16 - Canindé, São Paulo - SP, 03031-030, Brasil • (11) 94708-2631
+- Google Maps: https://maps.app.goo.gl/97rXVKvdabmSye7s7
+- Instagram: https://www.instagram.com/lollyfantasias
+- Endereço: R. Alexandrino Pedroso, 264 - Loja 16 - Canindé, São Paulo - SP, 03031-030
+- Contato da loja: (11) 94708-2631
+- Fotos (arquivos no repositório):
+- ![Foto do estabelecimento](evidencias/fotoDoEstabelecimento.jpeg)
 
 Responsável pela organização: nome e telefone de quem atendeu o grupo — o professor pode entrar em contato para confirmar as informações.
 
 Leonidas Fagundes Correa
-11 948527676
-Relato da entrevista (todos os grupos) Relate a entrevista com o responsável pela organização. A entrevista da Entrega 1 pode ser reaproveitada se atender a todos os itens abaixo — inclusive ter sido feita no ambiente da organização, com foto — e se tiver levantado o necessário para os processos, requisitos e regras desta etapa. Se algo precisou ser confirmado depois (ex.: processos típicos levantados por pesquisa), relate também a nova visita.
+Telefone: 11 948527676
+
+Relato da entrevista 
+- Quem: Leonidas Fagundes Correa, funcionário responsável por todas as tarefas da loja. Participou do grupo a integrante Rafaela.
+- Quando e onde: 11/09/2026, às 13h, na própria loja (endereço acima).
+- Comprovação: foto da entrevista no local em `evidencias/` ([PREENCHER o nome do arquivo e inserir a imagem aqui]).
+- Levantamento completo: [levantamento/levantamento.md](levantamento/levantamento.md), que separa o que o grupo observou na loja do que o entrevistado respondeu.
 
 O entrevistado foi o funcionário Leonidas Fagundes Correa. Apenas a integrante Rafaela participou da entrevista. A empresa não possui dados muito precisos. O que foi observado é que o cliente chega a loja, escolhe a fantasia desejada, escolhe a forma de pagamento, paga, e a venda é finalizada. Quando algum tipo de fantasia está se esgotando na loja, o funcionário vai até o estoque buscar mercadoria para repor o que falta na loja, e se no estoque está com uma quantidade baixa de fantasias, ele solicita reposição ao fornecedor.
 Quem: nome e função do entrevistado e quais integrantes do grupo participaram. Quando e onde: data e local — a entrevista deve ser realizada no ambiente da organização. A observação presencial da rotina é parte importante do levantamento de requisitos: o que o grupo vê acontecer no local (como um pedido é anotado, onde o estoque é controlado, que papéis e planilhas circulam) muitas vezes difere do que é dito na entrevista. Destaque os achados obtidos pela observação, separados dos obtidos pelas respostas do entrevistado.
