@@ -48,7 +48,7 @@ Na entrevista foram abordados o processo de venda, a organização das fantasias
 
 Em relação à Entrega 1, não foram identificadas mudanças nos processos da loja. A segunda etapa aprofundou e detalhou o que já havia sido levantado, principalmente sobre controle de estoque, identificação dos produtos, regras de venda e entrega e volume de vendas.
 
-- 2. Processos de negócio
+- 2 Processos de negócio
 
 - Processos realizados pela loja
 
