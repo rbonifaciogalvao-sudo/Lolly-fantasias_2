@@ -75,7 +75,11 @@ Processos realizados pela loja
 13. Conservação das fantasias: guardadas em sacolas.
 14. A loja emite nota fiscal.
 
-Processos propostos pelo sistema (não existem hoje na loja): cadastro de clientes (com autorização LGPD), controle de caixa e fechamento de caixa.
+Processos propostos pelo sistema (ainda não existem):
+
+- Controle de caixa: registra as movimentações financeiras da loja, incluindo entradas, saídas, valores recebidos, formas de pagamento e despesas.
+
+- Fechamento de caixa: registra a conferência dos valores ao final do expediente, comparando o saldo esperado com o dinheiro e os pagamentos recebidos, identificando possíveis diferenças.
 
 Processos prováveis que ficaram de fora, com justificativa
 
