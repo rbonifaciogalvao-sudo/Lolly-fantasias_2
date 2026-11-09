@@ -12,10 +12,10 @@ Modelagem e implementação do banco de dados de uma loja de fantasias do Canind
 1.1 Revisão do Modelo Conceitual 
 - Caracterização da organização
 
-Nome e natureza: Lolly Fantasias, loja comercial com fins lucrativos que vende fantasias infantis e adultas, no varejo e no atacado.
+Nome e natureza: Lolly Fantasias, loja comercial que vende fantasias infantis e adultas, no varejo e no atacado.
 
 Contexto e porte: 
-
+- Loja de fantasias com fins lucrativos
 - Uma unidade, com uma pessoa trabalhando atualmente (o funcionário que atende, vende, repõe e compra).
 - Entre 10 e 15 vendas por dia, variando conforme o mês.
 - Recebe mercadoria em média duas vezes por semana.
@@ -25,19 +25,17 @@ Contexto e porte:
 
 Problemas e necessidades identificados:
 
-P1: Falta de controle de entrada e saída de fantasias.
-P2: Falta de controle de vendas realizadas.
-P3: Não existe registro de fechamento de caixa e fluxo de caixa.
-P4: Não existe uma forma organizada de saber a quantidade de fantasias disponíveis no estoque.
+- P1: Falta de controle de entrada e saída de fantasias.
+- P2: Falta de controle de vendas realizadas.
+- P3: Não existe registro de fechamento de caixa e fluxo de caixa.
+- P4: Não existe uma forma organizada de saber a quantidade de fantasias disponíveis no estoque.
 
 Escopo do sistema: O banco reúne os dados de toda a loja: clientes, funcionários, fornecedores, fantasias, vendas e seus itens, trocas, compras e seus itens, movimentos de caixa e fechamentos de caixa.
 
 
-**
 
 Justificativa da escolha:  A loja é acessível ao grupo e não possui nenhum sistema de controle, então o projeto pode propor uma solução real para estoque, vendas e fluxo de caixa. Declaração de vínculo: uma das integrantes é sobrinha do funcionário da loja. O vínculo não dispensou a entrevista presencial no local, comprovada por foto.
 
-• A loja foi escolhida por ser acessível ao nosso grupo, por conta que uma das integrantes é sobrinha do funcionário e pela organização não possuir um sistema de controle. Dessa forma, o projeto poderá propor uma solução para auxiliar no controle de estoque, vendas e fluxo de caixa.
 
 Evidências da organização: 
 
@@ -50,38 +48,36 @@ Evidências da organização:
 
 Responsável pela organização: nome e telefone de quem atendeu o grupo — o professor pode entrar em contato para confirmar as informações.
 
-Leonidas Fagundes Correa
-Telefone: 11 948527676
+- Leonidas Fagundes Correa - Telefone: 11 948527676
 
 Relato da entrevista 
 - Quem: Leonidas Fagundes Correa, funcionário responsável por todas as tarefas da loja. Participou do grupo a integrante Rafaela.
 - Quando e onde: 11/09/2026, às 13h, na própria loja (endereço acima).
-- Comprovação: foto da entrevista no local em `evidencias/` ([PREENCHER o nome do arquivo e inserir a imagem aqui]).
+- Comprovação: foto da entrevista no local ([levantamento/fachada.png]).
 - Levantamento completo: [levantamento/levantamento.md](levantamento/levantamento.md), que separa o que o grupo observou na loja do que o entrevistado respondeu.
 
 
-
-
 Processos de negócio 
-**Processos realizados pela loja**
+Processos realizados pela loja
 
-1. **Atendimento ao cliente:** o cliente escolhe a fantasia e o funcionário ajuda a localizar o modelo e conferir a disponibilidade.
-2. **Venda (varejo e atacado):** o funcionário confere a disponibilidade, o cliente escolhe a forma de pagamento e paga; só depois as fantasias são separadas e entregues. A venda registra data, tipo, forma de pagamento, cliente, funcionário e, para cada item, a fantasia, a quantidade e o valor praticado.
-3. **Consulta e controle de estoque:** contagem manual na exposição e no estoque.
-4. **Compra de mercadorias e escolha de fornecedores:** por prazo e preço.
-5. **Recebimento de mercadorias:** conferência manual de danos e divergências de quantidade.
-6. **Reposição:** da exposição a partir do estoque; do estoque a partir do fornecedor, quando restam de 5 a 10 unidades.
-7. **Organização e identificação dos produtos:** por modelo, tamanho e categoria da época, com identificação visual.
-8. **Encomendas:** quando a quantidade pedida não existe, a loja pode encomendar ao fornecedor.
-9. **Definição de preços:** preço de venda a partir do custo, com valor diferenciado no atacado.
-10. **Entrega:** correio, excursão ou ônibus, para compras a partir de R$ 200.
-11. **Troca de produtos:** troca por outra fantasia, sem devolução do valor.
-12. **Atendimento pós-venda:** dúvidas e reclamações por WhatsApp.
-13. **Conservação das fantasias:** guardadas em sacolas.
+1. Atendimento ao cliente: o cliente escolhe a fantasia e o funcionário ajuda a localizar o modelo e conferir a disponibilidade.
+2. Venda (varejo e atacado): o funcionário confere a disponibilidade, o cliente escolhe a forma de pagamento e paga; só depois as fantasias são separadas e entregues. A venda registra data, tipo, forma de pagamento, cliente, funcionário e, para cada item, a fantasia, a quantidade e o valor praticado.
+3. Consulta e controle de estoque: contagem manual na exposição e no estoque.
+4. Compra de mercadorias e escolha de fornecedores: por prazo e preço.
+5. Recebimento de mercadorias: conferência manual de danos e divergências de quantidade.
+6. Reposição: da exposição a partir do estoque; do estoque a partir do fornecedor, quando restam de 5 a 10 unidades.
+7. Organização e identificação dos produtos: por modelo, tamanho e categoria da época, com identificação visual.
+8. Encomendas: quando a quantidade pedida não existe, a loja pode encomendar ao fornecedor.
+9. Definição de preços: preço de venda a partir do custo, com valor diferenciado no atacado.
+10. Entrega: correio, excursão ou ônibus, para compras a partir de R$ 200.
+11. Troca de produtos: troca por outra fantasia, sem devolução do valor.
+12. Atendimento pós-venda: dúvidas e reclamações por WhatsApp.
+13. Conservação das fantasias: guardadas em sacolas.
+14. A loja emite nota fiscal.
 
-**Processos propostos pelo sistema (não existem hoje na loja):** cadastro de clientes (com autorização LGPD), controle de caixa e fechamento de caixa.
+Processos propostos pelo sistema (não existem hoje na loja): cadastro de clientes (com autorização LGPD), controle de caixa e fechamento de caixa.
 
-**Processos prováveis que ficaram de fora, com justificativa**
+Processos prováveis que ficaram de fora, com justificativa
 
 | Processo | Por que não entrou |
 |---|---|
@@ -90,13 +86,11 @@ Processos de negócio
 | Devolução de dinheiro | A loja só troca o produto. |
 | Higienização e manutenção | Não foi identificado processo específico, só o cuidado de guardar em sacolas. |
 | Cancelamento de vendas | Não foi possível confirmar como funciona; não entra enquanto não for confirmado em nova visita. |
-| Emissão de nota fiscal | Não foi levantado na entrevista; [CONFIRMAR com o Leonidas se a loja emite]. |
-
 
 
 Requisitos
 
-**Requisitos funcionais**
+Requisitos funcionais
 
 | Código | Requisito | Problema |
 |---|---|---|
@@ -118,21 +112,21 @@ Requisitos
 | RF16 | Cadastrar funcionário com nome, cargo e telefone. | P2 |
 | RF17 | Emitir relatórios gerenciais: vendas e faturamento por período, fantasias mais vendidas, fluxo de caixa, estoque e reposição (consultas G01 a G19). | P1 a P4 |
 
-**Requisitos não funcionais**
+- Requisitos não funcionais
 
 | Código | Requisito |
 |---|---|
 | RNF01 | Integridade: o banco deve impor chaves estrangeiras, obrigatoriedade, unicidade e valores permitidos (CHECK) definidos no dicionário de dados. |
-| RNF02 | Desempenho: consultas de relatório sobre o volume da loja (cerca de 12 vendas por dia) devem responder em segundos; por isso há índices em datas, chaves estrangeiras e categoria. |
+| RNF02 | Desempenho: consultas de relatório sobre o volume da loja (cerca de 12 vendas por dia) devem responder em 3 segundos; por isso há índices em datas, chaves estrangeiras e categoria. |
 | RNF03 | Segurança e LGPD: acesso por papel (funcionário e responsável), dados pessoais do cliente só com autorização registrada e eliminação a pedido do titular (dicionário, seção 6). |
 | RNF04 | Rastreabilidade: vendas, compras e movimentos de caixa não são apagados; o histórico permanece. |
 | RNF05 | Usabilidade: como a loja tem uma só pessoa atendendo, o registro de uma venda deve ser rápido (cliente padrão e preço preenchido pela fantasia). |
 | RNF06 | Disponibilidade e cópia de segurança: backup diário do banco. |
 | RNF07 | Portabilidade: MySQL 8 com InnoDB e codificação utf8mb4. |
 
-**Requisitos prováveis que ficaram de fora:** controle de aluguel e devolução de peças, produção, devolução de valores e cancelamento de vendas, pelos mesmos motivos da lista de processos; integração com maquininha de cartão e emissão de nota fiscal, porque não foram levantados e dependem de confirmação com o responsável.
+- Requisitos prováveis que ficaram de fora: controle de aluguel e devolução de peças, produção, devolução de valores e cancelamento de vendas.
 
-### Regras de negócio
+- Regras de negócio
 
 | Código | Regra | Origem |
 |---|---|---|
@@ -151,21 +145,17 @@ Requisitos
 | RN13 | Um movimento de caixa vem de uma venda ou de uma compra, nunca das duas. | Proposta do sistema |
 | RN14 | O fechamento confere os movimentos; a diferença é o valor contado menos o esperado. | Proposta do sistema |
 
-**Regras prováveis que ficaram de fora:** regra de cancelamento de venda (não confirmada), prazo legal de troca e emissão de nota fiscal (não levantados), idade mínima (não se aplica a fantasias).
+- Regras prováveis que ficaram de fora: regra de cancelamento de venda (não confirmada), prazo legal de troca, idade mínima (não se aplica a fantasias).
 Modelo Lógico Relacional 
 ![Modelo lógico relacional da Lolly Fantasias](diagrama/modelo_logico.jpeg)
 
-Deve apresentar claramente: Tabelas Atributos (colunas), com seus tipos de dados Chaves primárias Chaves estrangeiras Cardinalidades já convertidas As demais restrições de integridade — obrigatoriedade (NOT NULL), unicidade (UNIQUE), valores permitidos (CHECK), valores padrão (DEFAULT) — não aparecem no diagrama do brModelo e devem ser documentadas no dicionário de dados (seção 5) e implementadas no script SQL (seção 3).
-
 Notação e software do DER
 
-O DER foi criado no **brModelo**, na notação pedida (entidades, losangos, cardinalidades (mín, máx), círculos de atributos e identificadores preenchidos, sem chaves estrangeiras). Arquivo: [diagramas/der_conceitual.png](diagramas/der_conceitual.png).
+- O DER foi criado no **brModelo**, na notação pedida (entidades, losangos, cardinalidades (mín, máx), círculos de atributos e identificadores preenchidos, sem chaves estrangeiras). Arquivo: [diagramas/der_conceitual.png](diagramas/der_conceitual.png).
 
-![DER conceitual](diagramas/der_conceitual.png)
+- O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA, COMPRA, CAIXA, FECHAMENTO_CAIXA) e 12 relacionamentos (EFETUA, REALIZA, CONTEM, REFERE, RECEBE, DEVOLVE, RESPONSAVEL, ENTRA, FORNECE, REGISTRA, GERA, CONFERE). CONTEM e ENTRA são relacionamentos N:N com atributos próprios.
 
-O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA, COMPRA, CAIXA, FECHAMENTO_CAIXA) e 12 relacionamentos (EFETUA, REALIZA, CONTEM, REFERE, RECEBE, DEVOLVE, RESPONSAVEL, ENTRA, FORNECE, REGISTRA, GERA, CONFERE). CONTEM e ENTRA são relacionamentos N:N com atributos próprios.
-
-### Apontamentos da correção da Entrega 1 (Caso A: mesma organização)
+- Apontamentos da correção da Entrega 1 (Caso A: mesma organização)
 
 | Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
 |---|---|---|
@@ -176,15 +166,15 @@ O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA,
 | Não ligar o fornecedor à compra. | FORNECEDOR liga-se somente a FANTASIA (relacionamento FORNECE). | Cada fantasia tem um único fornecedor (RN08); o fornecedor de uma compra sai da fantasia comprada. |
 | Nomes e prefixos dos atributos e relacionamentos. | Atributos com ID_, NM_, DT_, DS_, NR_, QT_, VL_, TP_, IN_ e relacionamentos com nome. | Padronização do dicionário de dados. |
 | Trocas de produtos (processo confirmado depois). | Entidade TROCA, ligada à venda e duas vezes à fantasia (DEVOLVE e RECEBE). | A loja troca o produto e a troca precisa guardar a fantasia devolvida e a entregue (RN04). |
-| [COMPLETAR com os demais apontamentos do PDF de correção da E1, um por linha] | [PREENCHER] | [PREENCHER] |
+
 
 ---
 
-## 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
+ 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
 
-- **Entidades → tabelas.** Cada uma das 9 entidades virou uma tabela com o mesmo nome. Os dois relacionamentos N:N (CONTEM e ENTRA) viraram tabelas associativas, o que dá **11 tabelas**.
-- **Atributos → colunas.** Cada atributo virou uma coluna com tipo definido: ID_ em INT, NM_ e DS_ em VARCHAR, DT_ em DATE, QT_ em INT, VL_ em DECIMAL(10,2) no MySQL (o brModelo só tem FLOAT), IN_ em BOOLEAN, NR_CNPJ em CHAR(14).
-- **Relacionamentos → chaves.**
+- Entidades → tabelas. Cada uma das 9 entidades virou uma tabela com o mesmo nome. Os dois relacionamentos N:N (CONTEM e ENTRA) viraram tabelas associativas, o que dá 11 tabelas.
+- Atributos → colunas. Cada atributo virou uma coluna com tipo definido: ID_ em INT, NM_ e DS_ em VARCHAR, DT_ em DATE, QT_ em INT, VL_ em DECIMAL(10,2) no MySQL (o brModelo só tem FLOAT), IN_ em BOOLEAN, NR_CNPJ em CHAR(14).
+- Relacionamentos → chaves.
 
 | Relacionamento | Cardinalidade | Como virou chave |
 |---|---|---|
@@ -200,12 +190,12 @@ O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA,
 | GERA (COMPRA–CAIXA) | 1:1 opcional | CAIXA.ID_COMPRA (FK, UNIQUE, opcional) |
 | CONFERE (FECHAMENTO_CAIXA–CAIXA) | 1:N | CAIXA.ID_FECHAMENTO (FK, opcional até o movimento ser conferido) |
 
-- **Generalização/especialização:** o DER não tem; nenhuma estratégia de conversão foi necessária.
-- Modelo lógico: [diagramas/modelo_logico.png](diagramas/modelo_logico.png), criado no **brModelo**.
+- Generalização/especialização: o DER não tem; nenhuma estratégia de conversão foi necessária.
+- Modelo lógico: [diagramas/modelo_logico.png](diagramas/modelo_logico.png), criado no brModelo.
 
 ![Modelo lógico](diagramas/modelo_logico.png)
 
-## 1.3 Chaves primárias e estrangeiras
+- 1.3 Chaves primárias e estrangeiras
 
 | Tabela | Chave primária | Chaves estrangeiras |
 |---|---|---|
@@ -221,7 +211,7 @@ O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA,
 | FECHAMENTO_CAIXA | ID_FECHAMENTO | — |
 | CAIXA | ID_MOV | ID_VENDA → VENDA; ID_COMPRA → COMPRA; ID_FECHAMENTO → FECHAMENTO_CAIXA |
 
-## 1.4 Processo de normalização
+- 1.4 Processo de normalização
 
 | Forma normal | O que foi verificado | O que foi feito no modelo |
 |---|---|---|
@@ -229,21 +219,21 @@ O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA,
 | 2FN | Dependência parcial da chave primária composta. | As únicas chaves compostas são as de CONTEM (ID_VENDA + ID_FANTASIA) e ENTRA (ID_COMPRA + ID_FANTASIA). QT_ITEM e VL_PRATICADO dependem do par inteiro; QT_SOLICITADA, QT_ENTRADA e VL_CUSTO também. Nome, categoria e preço de tabela ficam só em FANTASIA. |
 | 3FN | Dependência transitiva entre atributos que não são chave. | Dados do fornecedor (nome, CNPJ, telefone) dependem de ID_FORNECEDOR e não de ID_FANTASIA; ficam em FORNECEDOR e FANTASIA guarda só a FK. Dados de cliente e funcionário ficam em CLIENTE e FUNCIONARIO, e VENDA e COMPRA guardam só as FKs. |
 
-**Decisões sobre valores calculáveis**
+Decisões sobre valores calculáveis
 
-- **QT_DISPONIVEL (FANTASIA)** poderia ser calculado (entradas − vendas ± trocas). Foi mantido de propósito para saber o estoque na hora (P4) sem somar o histórico; é uma redundância controlada, atualizada a cada venda, compra e troca, e conferida pela consulta de auditoria A11.
-- **VL_DIFERENCA (FECHAMENTO_CAIXA)** é **guardado**, porque o fechamento registra o que foi contado e a diferença apurada no dia; a consulta A10 confere se ele bate com (contado − esperado).
-- **Total da venda e total da compra não são guardados**, pois saem da soma dos itens (CONTEM e ENTRA).
+- QT_DISPONIVEL (FANTASIA) poderia ser calculado (entradas − vendas ± trocas). Foi mantido de propósito para saber o estoque na hora (P4) sem somar o histórico; é uma redundância controlada, atualizada a cada venda, compra e troca, e conferida pela consulta de auditoria A11.
+- VL_DIFERENCA (FECHAMENTO_CAIXA) é guardado, porque o fechamento registra o que foi contado e a diferença apurada no dia; a consulta A10 confere se ele bate com (contado − esperado).
+- Total da venda e total da compra não são guardados, pois saem da soma dos itens (CONTEM e ENTRA).
 
-**Por que cada forma normal foi necessária:** sem a 1FN, uma venda com 3 fantasias exigiria colunas repetidas (fantasia1, fantasia2...); sem a 2FN, o preço e o nome da fantasia seriam repetidos em cada item e poderiam divergir; sem a 3FN, mudar o telefone de um fornecedor exigiria alterar todas as fantasias dele.
+Por que cada forma normal foi necessária: sem a 1FN, uma venda com 3 fantasias exigiria colunas repetidas (fantasia1, fantasia2...); sem a 2FN, o preço e o nome da fantasia seriam repetidos em cada item e poderiam divergir; sem a 3FN, mudar o telefone de um fornecedor exigiria alterar todas as fantasias dele.
 
-## 1.5 Justificativas técnicas das decisões
+- 1.5 Justificativas técnicas das decisões
 
-**Chaves primárias.** Foram usados identificadores sintéticos inteiros (ID_ com AUTO_INCREMENT) porque a loja não tem códigos nas fantasias e os dados naturais (nome, telefone) não são únicos nem estáveis. Em CONTEM e ENTRA a chave é composta pelas duas FKs, o que impede a mesma fantasia aparecer duas vezes na mesma venda ou compra.
+Chaves primárias. Foram usados identificadores sintéticos inteiros (ID_ com AUTO_INCREMENT) porque a loja não tem códigos nas fantasias e os dados naturais (nome, telefone) não são únicos nem estáveis. Em CONTEM e ENTRA a chave é composta pelas duas FKs, o que impede a mesma fantasia aparecer duas vezes na mesma venda ou compra.
 
-**Chaves estrangeiras.** Cada FK implementa um relacionamento do DER (tabela da seção 1.2). Todas usam o comportamento padrão (RESTRICT): vendas, compras e movimentos não podem ficar sem o registro de origem, o que preserva o histórico (RNF04).
+Chaves estrangeiras. Cada FK implementa um relacionamento do DER (tabela da seção 1.2). Todas usam o comportamento padrão (RESTRICT): vendas, compras e movimentos não podem ficar sem o registro de origem, o que preserva o histórico (RNF04).
 
-**Restrições e as regras que implementam**
+Restrições e as regras que implementam
 
 | Restrição | Regra |
 |---|---|
@@ -265,19 +255,19 @@ O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA,
 
 As regras que cruzam tabelas (RN01 quanto ao número de peças, RN02 quanto ao valor de R$ 200, RN04, RN07, RN09, RN13 e RN14 quanto aos totais) não cabem em CHECK do MySQL e são verificadas pelas consultas de auditoria A01 a A11.
 
-**Decisões arquiteturais gerais**
+- Decisões arquiteturais gerais
 
-- **Cliente padrão:** a loja vende sem exigir dados, mas a regra RN05 diz que toda venda tem cliente; por isso existe o cliente 1, "Cliente não identificado", em vez de deixar ID_CLIENTE nulo.
-- **CAIXA com duas FKs opcionais:** em vez de duas tabelas de movimento, um só caixa guarda entradas (vendas) e saídas (compras), com CHECK garantindo uma única origem.
-- **VL_ em DECIMAL(10,2):** o brModelo só oferece FLOAT, mas o script usa DECIMAL para não ter erro de arredondamento em dinheiro.
-- **TROCA como entidade própria:** guarda a fantasia devolvida e a entregue, sem campo de valor devolvido, porque a loja não devolve dinheiro (RN04).
-- **Quantidade solicitada x recebida:** separadas em ENTRA para tornar visível a divergência com o fornecedor (RN09), que hoje a loja precisa provar manualmente.
+- Cliente padrão: a loja vende sem exigir dados, mas a regra RN05 diz que toda venda tem cliente; por isso existe o cliente 1, "Cliente não identificado", em vez de deixar ID_CLIENTE nulo.
+- CAIXA com duas FKs opcionais: em vez de duas tabelas de movimento, um só caixa guarda entradas (vendas) e saídas (compras), com CHECK garantindo uma única origem.
+- VL_ em DECIMAL(10,2): o brModelo só oferece FLOAT, mas o script usa DECIMAL para não ter erro de arredondamento em dinheiro.
+- TROCA como entidade própria: guarda a fantasia devolvida e a entregue, sem campo de valor devolvido, porque a loja não devolve dinheiro (RN04).
+- Quantidade solicitada x recebida: separadas em ENTRA para tornar visível a divergência com o fornecedor (RN09), que hoje a loja precisa provar manualmente.
 
-## 1.6 Proposta de arquitetura analítica para BI e IA
+- 1.6 Proposta de arquitetura analítica para BI e IA
 
-**Informações estratégicas.** Quais fantasias vendem mais e em que época; quanto cada categoria rende; quais modelos estão acabando; quanto a loja ganha por peça; quanto entra e sai do caixa; quais fornecedores entregam menos do que o combinado; quantos clientes compram sem cadastro.
+Informações estratégicas. Quais fantasias vendem mais e em que época; quanto cada categoria rende; quais modelos estão acabando; quanto a loja ganha por peça; quanto entra e sai do caixa; quais fornecedores entregam menos do que o combinado; quantos clientes compram sem cadastro.
 
-**KPIs propostos** (cada um tem consulta no script)
+KPIs propostos (cada um tem consulta no script)
 
 | KPI | Fórmula | Período | Meta | Consulta |
 |---|---|---|---|---|
@@ -297,7 +287,7 @@ As regras que cruzam tabelas (RN01 quanto ao número de peças, RN02 quanto ao v
 | Taxa de divergência no recebimento | (pedido − recebido) ÷ pedido | período | 0% | G02 |
 | Vendas com entrega e encomendas | contagem e valor médio | período | — | G18, G19 |
 
-**Rastreabilidade (problemas e KPIs → tabelas → consultas)**
+Rastreabilidade (problemas e KPIs → tabelas → consultas)
 
 | Problema ou KPI | Tabelas envolvidas | Consulta no script |
 |---|---|---|
@@ -309,17 +299,17 @@ As regras que cruzam tabelas (RN01 quanto ao número de peças, RN02 quanto ao v
 | % de vendas sem cadastro e clientes sem compra | CLIENTE, VENDA | G16, G17 |
 | Entregas e encomendas | VENDA, CONTEM | G18, G19 |
 
-**Potencial para BI.** O modelo estrela é natural: VENDA + CONTEM como fato de vendas (dimensões: data, fantasia, categoria, cliente, funcionário, forma de pagamento) e COMPRA + ENTRA como fato de compras (dimensões: data, fantasia, fornecedor). Um painel (Power BI, Metabase ou Looker Studio) pode mostrar faturamento por mês e categoria, ranking de fantasias, saldo de caixa e lista de reposição, lendo diretamente as consultas G.
+Potencial para BI. O modelo estrela é natural: VENDA + CONTEM como fato de vendas (dimensões: data, fantasia, categoria, cliente, funcionário, forma de pagamento) e COMPRA + ENTRA como fato de compras (dimensões: data, fantasia, fornecedor). Um painel (Power BI, Metabase ou Looker Studio) pode mostrar faturamento por mês e categoria, ranking de fantasias, saldo de caixa e lista de reposição, lendo diretamente as consultas G.
 
-**Aplicações de IA e análise preditiva.** Previsão de demanda por fantasia e categoria usando o histórico de vendas e a sazonalidade (G08); sugestão automática de quantidade e data de reposição conforme a demanda e o prazo do fornecedor; recomendação de fantasias complementares (market basket) a partir dos itens vendidos juntos; detecção de anomalias em fechamento de caixa (A10) e em estoque (A11).
+Aplicações de IA e análise preditiva. Previsão de demanda por fantasia e categoria usando o histórico de vendas e a sazonalidade (G08); sugestão automática de quantidade e data de reposição conforme a demanda e o prazo do fornecedor; recomendação de fantasias complementares (market basket) a partir dos itens vendidos juntos; detecção de anomalias em fechamento de caixa (A10) e em estoque (A11).
 
 ---
 
-## 2. Modelo lógico relacional
+- 2. Modelo lógico relacional
 
-Diagrama: [diagramas/modelo_logico.png](diagramas/modelo_logico.png), feito no **brModelo** (notação do modelo lógico), com 11 tabelas, colunas e tipos, PK, FK e cardinalidades. As restrições NOT NULL, UNIQUE, CHECK e DEFAULT estão no [dicionário de dados](docs/dicionario_de_dados.html) e no script.
+Diagrama: [diagramas/modelo_logico.png](diagramas/modelo_logico.png), feito no brModelo (notação do modelo lógico), com 11 tabelas, colunas e tipos, PK, FK e cardinalidades. As restrições NOT NULL, UNIQUE, CHECK e DEFAULT estão no [dicionário de dados](docs/dicionario_de_dados.html) e no script.
 
-## 3. Script SQL completo
+- 3. Script SQL completo
 
 Arquivo: [docs/script.sql](docs/script.sql), para MySQL 8.0.16 ou superior. Para executar do zero, rode o arquivo inteiro (ele apaga e recria o banco `lolly_fantasias`). Ordem dentro do arquivo:
 
@@ -333,9 +323,9 @@ Arquivo: [docs/script.sql](docs/script.sql), para MySQL 8.0.16 ou superior. Para
 
 Cada consulta G e A tem cabeçalho com código, pergunta em português e o problema (Px) ou a regra (RNxx) que atende.
 
-## 4. Massa de dados
+- 4. Massa de dados
 
-Dados 100% fictícios (nomes, telefones, CNPJs e valores), gerados para o período de **14/09/2026 a 07/11/2026** (oito semanas), coerente com os volumes da loja. O arquivo está no próprio `docs/script.sql`.
+Dados 100% fictícios (nomes, telefones, CNPJs e valores), gerados para o período de 14/09/2026 a 07/11/2026 (oito semanas), coerente com os volumes da loja. O arquivo está no próprio `docs/script.sql`.
 
 | Tabela | Registros | Justificativa pelo volume real da loja |
 |---|---|---|
@@ -351,9 +341,9 @@ Dados 100% fictícios (nomes, telefones, CNPJs e valores), gerados para o perío
 | CAIXA | 617 | Um movimento por venda (entrada) e um por compra (saída). |
 | FECHAMENTO_CAIXA | 8 | Fechamentos semanais de 12/09 a 31/10; a última semana fica sem fechamento para a consulta G11. |
 
-**Situações cobertas:** vendas sem cadastro, clientes sem compras, atacado e varejo, quatro formas de pagamento, entregas por correio, excursão e ônibus, 7 encomendas, trocas, divergências de recebimento, fantasias abaixo do mínimo e sem estoque, fechamentos com e sem diferença, meses diferentes.
+Situações cobertas: vendas sem cadastro, clientes sem compras, atacado e varejo, quatro formas de pagamento, entregas por correio, excursão e ônibus, 7 encomendas, trocas, divergências de recebimento, fantasias abaixo do mínimo e sem estoque, fechamentos com e sem diferença, meses diferentes.
 
-**Inconsistências propositais** (uma por consulta de auditoria, para a demonstração):
+Inconsistências propositais (uma por consulta de auditoria, para a demonstração):
 
 | Consulta | O que foi plantado |
 |---|---|
