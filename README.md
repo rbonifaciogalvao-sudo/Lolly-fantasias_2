@@ -372,7 +372,7 @@ Dados 100% fictícios (nomes, telefones, CNPJs e valores), gerados para o perío
 
 Situações cobertas: vendas sem cadastro, clientes sem compras, atacado e varejo, quatro formas de pagamento, entregas por correio, excursão e ônibus, 7 encomendas, trocas, divergências de recebimento, fantasias abaixo do mínimo e sem estoque, fechamentos com e sem diferença, meses diferentes.
 
-Inconsistências propositais (uma por consulta de auditoria, para a demonstração):
+Inconsistências propositais, exceto A08 e A06 (uma por consulta de auditoria, para a demonstração):
 
 | Consulta | O que foi plantado |
 |---|---|
