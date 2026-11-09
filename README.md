@@ -132,22 +132,22 @@ Requisitos funcionais
 
 - Regras de negócio
 
-| Código | Regra | Origem |
-|---|---|---|
-| RN01 | A venda de atacado vale a partir de 6 peças, com valor diferenciado (VL_VENDA_ATACADO). | Entrevista |
-| RN02 | A entrega só vale para compras a partir de R$ 200, por correio, excursão ou ônibus. | Entrevista |
-| RN03 | As fantasias só são separadas depois da confirmação do pagamento. | Entrevista |
-| RN04 | A troca é por outra fantasia, sem devolução do valor pago. | Entrevista |
-| RN05 | Toda venda tem um cliente; a venda sem cadastro usa o cliente padrão "Cliente não identificado". | Proposta do sistema |
-| RN06 | Os dados pessoais do cliente só são usados com autorização registrada (IN_AUTORIZA_LGPD). | Proposta do sistema |
-| RN07 | A reposição é pedida ao fornecedor quando QT_DISPONIVEL chega a QT_MINIMA (de 5 a 10 unidades). | Entrevista |
-| RN08 | Cada fantasia tem um único fornecedor. | Modelo |
-| RN09 | A quantidade recebida pode diferir da pedida; danos e divergências são conferidos e anotados. | Entrevista |
-| RN10 | O preço de venda é definido a partir do custo. | Entrevista |
-| RN11 | Sem a quantidade pedida, a loja pode encomendar ao fornecedor. | Entrevista |
-| RN12 | Cada fantasia tem uma categoria da época, e só as da época ficam expostas. | Entrevista |
-| RN13 | Um movimento de caixa vem de uma venda ou de uma compra, nunca das duas. | Proposta do sistema |
-| RN14 | O fechamento confere os movimentos; a diferença é o valor contado menos o esperado. | Proposta do sistema |
+| Código | Regra | Justificativa / Importância | Origem |
+|---|---|---|---|
+| RN01 | A venda de atacado vale a partir de 6 peças, com valor diferenciado (VL_VENDA_ATACADO). | Permite aplicar preços diferenciados para compras em maior quantidade. | Entrevista |
+| RN02 | A entrega só vale para compras a partir de R$ 200, por correio, excursão ou ônibus. | Evita entregas para compras abaixo do valor mínimo estabelecido pela loja. | Entrevista |
+| RN03 | As fantasias só são separadas depois da confirmação do pagamento. | Evita separar produtos sem garantia de pagamento. | Entrevista |
+| RN04 | A troca é por outra fantasia, sem devolução do valor pago. | Padroniza o processo de troca e evita devoluções financeiras. | Entrevista |
+| RN05 | Toda venda tem um cliente; a venda sem cadastro usa o cliente padrão "Cliente não identificado". | Garante que toda venda esteja vinculada a um registro de cliente no sistema. | Proposta do sistema |
+| RN06 | Os dados pessoais do cliente só são usados com autorização registrada (IN_AUTORIZA_LGPD). | Protege os dados pessoais dos clientes e respeita a LGPD. | Proposta do sistema |
+| RN07 | A reposição é pedida ao fornecedor quando QT_DISPONIVEL chega a QT_MINIMA (de 5 a 10 unidades). | Evita a falta de produtos e facilita o planejamento das reposições. | Entrevista |
+| RN08 | Cada fantasia tem um único fornecedor. | Permite identificar o fornecedor responsável por cada fantasia. | Modelo |
+| RN09 | A quantidade recebida pode diferir da pedida; danos e divergências são conferidos e anotados. | Garante o registro correto das quantidades recebidas e de possíveis problemas nos produtos. | Entrevista |
+| RN10 | O preço de venda é definido a partir do custo. | Ajuda a definir preços que considerem os custos e permitam obter lucro. | Entrevista |
+| RN11 | Sem a quantidade pedida, a loja pode encomendar ao fornecedor. | Permite atender à demanda dos clientes mesmo quando não há quantidade suficiente em estoque. | Entrevista |
+| RN12 | Cada fantasia tem uma categoria da época, e só as da época ficam expostas. | Organiza a exposição dos produtos conforme a época e a demanda da loja. | Entrevista |
+| RN13 | Um movimento de caixa vem de uma venda ou de uma compra, nunca das duas. | Evita associar incorretamente uma movimentação de caixa a uma venda e uma compra ao mesmo tempo. | Proposta do sistema |
+| RN14 | O fechamento confere os movimentos; a diferença é o valor contado menos o esperado. | Permite identificar diferenças entre os valores esperados e os valores realmente contabilizados no caixa. | Proposta do sistema |
 
 - Regras prováveis que ficaram de fora: regra de cancelamento de venda (não confirmada), prazo legal de troca, idade mínima (não se aplica a fantasias).
 Modelo Lógico Relacional 
