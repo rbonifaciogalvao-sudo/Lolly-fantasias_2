@@ -210,7 +210,7 @@ Notação e software do DER
 | CONFERE (FECHAMENTO_CAIXA–CAIXA) | 1:N | CAIXA.ID_FECHAMENTO (FK, opcional até o movimento ser conferido) |
 
 - Generalização/especialização: o DER não tem; nenhuma estratégia de conversão foi necessária.
-- Modelo lógico: [Modelo Lógico.png](diagrama/modelo_logico.png), criado no brModelo.
+- Modelo lógico: [Modelo Lógico](diagrama/modelo_logico.png), criado no brModelo.
 
 
 - 1.3 Chaves primárias e estrangeiras
