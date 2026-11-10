@@ -77,7 +77,7 @@ Responsável pela organização: nome e telefone de quem atendeu o grupo — o p
 Relato da entrevista 
 - Quem: Leonidas Fagundes Correa, funcionário responsável por todas as tarefas da loja. Participou do grupo a integrante Rafaela.
 - Quando e onde: 11/09/2026, às 13h, na própria loja (endereço acima).
-- Comprovação: foto da entrevista no local [levantamento/fachada.jpeg].
+- Comprovação: foto da entrevista no local [Imagem da fachada](levantamento/fachada.jpeg).
 - Levantamento completo: [levantamento](levantamento/levantamento.md), que separa o que o grupo observou na loja do que o entrevistado respondeu.
 
 
