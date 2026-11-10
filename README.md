@@ -325,7 +325,7 @@ Aplicações de IA e análise preditiva. Previsão de demanda por fantasia e cat
 
 - 2. Modelo lógico relacional
 
-Diagrama: [diagrama/modelo_logico.png](diagrama/modelo_logico.png), feito no brModelo (notação do modelo lógico), com 11 tabelas, colunas e tipos, PK, FK e cardinalidades. As restrições NOT NULL, UNIQUE, CHECK e DEFAULT estão no [dicionário de dados](docs/dicionario_de_dados.html) e no script.
+Diagrama: [Modelo Lógico](diagrama/modelo_logico.png), feito no brModelo (notação do modelo lógico), com 11 tabelas, colunas e tipos, PK, FK e cardinalidades. As restrições NOT NULL, UNIQUE, CHECK e DEFAULT estão no [Dicionário de Dados](docs/dicionario_de_dados.html) e no script.
 
 - 3. Script SQL completo
 
