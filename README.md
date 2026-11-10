@@ -382,9 +382,9 @@ O uso de IA para gerar a massa está documentado na seção 6.
 
 - 6 USO DE INTELIGÊNCIA ARTIFICIAL
 
-Durante o desenvolvimento do projeto de banco de dados da empresa Lolly Fantasias, foram utilizadas as ferramentas ChatGPT (OpenAI) e Claude (Anthropic) como apoio em diferentes etapas do trabalho. As ferramentas auxiliaram na organização das informações, na estruturação da documentação e na revisão textual.
+- Durante o desenvolvimento do projeto de banco de dados da empresa Lolly Fantasias, foram utilizadas as ferramentas ChatGPT (OpenAI) e Claude (Anthropic) como apoio em diferentes etapas do trabalho. As ferramentas auxiliaram na organização das informações, na estruturação da documentação e na revisão textual.
 
-A seguir, são apresentados os registros dos principais usos, conforme os critérios solicitados.
+- A seguir, são apresentados os registros dos principais usos, conforme os critérios solicitados.
 
 - 6.1. ChatGPT – Organização do levantamento de informações e processos
 
@@ -403,7 +403,7 @@ A seguir, são apresentados os registros dos principais usos, conforme os crité
 
 | Item | Registro |
 |---|---|
-| Ferramenta e etapa | Claude (Anthropic) – organização do levantamento da Entrega 2, estruturação do dicionário de dados e do README. |
+| Ferramenta e etapa | Claude (Anthropic) –  organização do levantamento da Entrega 2, levantamento de processos, requisitos, regras de negócio e KPIs típicos, normalização, proposta de BI e IA, estruturação do dicionário de dados e do README.|
 | Motivação | Separar corretamente o que foi observado durante a visita do que o funcionário informou na entrevista, além de organizar a documentação conforme o esqueleto fornecido pelo professor. |
 | Prompt(s) utilizados | “Estou confusa sobre separar o que observamos do que o entrevistado disse no levantamento. Me ajude a organizar.” / “Com base no esqueleto do professor, organize o README e o dicionário de dados.” |
 | Resposta recebida | A ferramenta sugeriu a separação entre observações e entrevista, a organização das regras de negócio, dos requisitos e dos problemas identificados, além da estruturação do dicionário de dados. |
@@ -419,20 +419,33 @@ A seguir, são apresentados os registros dos principais usos, conforme os crité
 |---|---|
 | Ferramenta e etapa | Claude (Anthropic) – geração da massa de dados fictícia do `docs/script.sql`, de 14/09/2026 a 07/11/2026. |
 | Motivação | A massa precisava seguir o volume real da loja, sem dados reais, e escrever à mão mais de 500 vendas com itens e caixa seria inviável. |
-| Prompt(s) utilizados | “Termine o trabalho da Entrega 2 com base no esqueleto do professor e na correção da Entrega 1, incluindo a massa de dados e o script SQL.” (ajustar para o texto real) |
+| Prompt(s) utilizados | "Gere massa de dados para o meu trabalho de banco de dados, incluindo nomes, valores, id, nome de fantasia, todos fictícios"  |
 | Resposta recebida | Script com 11 tabelas e massa com 565 vendas, 873 itens de venda, 52 compras, 100 itens de compra, 131 clientes, 48 fantasias, 617 movimentos de caixa e 8 fechamentos, com inconsistências propositais para as consultas de auditoria. |
 | Fontes consultadas e verificadas | Os volumes foram conferidos com a entrevista (10 a 15 vendas por dia, recebimento duas vezes por semana, atacado a partir de 6 peças, entrega a partir de R$ 200). O script foi executado no SQLize (MySQL 8.0). |
-| Trechos rejeitados ou corrigidos | Os comandos `DROP DATABASE`, `CREATE DATABASE` e `USE` foram comentados porque o SQLize não executava o script com eles. (Acrescentar outros ajustes feitos à mão.) |
+| Trechos rejeitados ou corrigidos | Os comandos `DROP DATABASE`, `CREATE DATABASE` e `USE` foram comentados porque o SQLize não executava o script com eles. |
 | Justificativa da escolha final | A massa cobre as situações da loja (vendas sem cadastro, atacado e varejo, trocas, divergências de recebimento, estoque baixo e fechamentos com e sem diferença) e permite demonstrar as consultas. |
 | Reflexão crítica | O catálogo, os preços e os fornecedores são inventados. As vendas por dia são mais regulares que na realidade, e as inconsistências foram plantadas de propósito. Por isso os resultados das consultas foram conferidos. |
 
-- 6.4. Considerações finais sobre o uso da inteligência artificial
+6.4. Claude – Script SQL (tabelas, consultas gerenciais e de auditoria)
 
-O ChatGPT e o Claude foram utilizados como ferramentas de apoio durante o desenvolvimento do projeto, contribuindo para organizar informações e melhorar a documentação.
+| Item | Registro |
+|---|---|
+| Ferramenta e etapa | Claude (Anthropic) – escrita do script SQL: criação das 11 tabelas com constraints, consultas SELECT com JOIN, UPDATE e DELETE, consultas gerenciais G01 a G19 e de auditoria A01 a A11. |
+| Motivação | Estruturar o script conforme o esqueleto do professor, com cabeçalho de código, pergunta e problema ou regra atendida em cada consulta. |
+| Prompt(s) utilizados | “Termine o trabalho da Entrega 2 com base no esqueleto do professor e na correção da Entrega 1, incluindo a massa de dados e o script SQL.” |
+| Resposta recebida | Script com tabelas, constraints, índices, 19 consultas gerenciais ligadas aos problemas P1 a P4 e aos KPIs, e 11 consultas de auditoria ligadas às regras RN01 a RN14. |
+| Fontes consultadas e verificadas | O script foi executado no SQLize (MySQL 8.0) e os resultados foram conferidos com as regras do README e com a massa de dados. |
+| Trechos rejeitados ou corrigidos | Os comandos DROP DATABASE, CREATE DATABASE e USE foram comentados porque o SQLize não executava o script com eles. |
+| Justificativa da escolha final | Foram mantidas as consultas que respondem os problemas declarados e que verificam as regras de negócio. |
+| Reflexão crítica | Algumas consultas usam recursos do MySQL 8 (funções de janela) e podem não rodar em versões antigas. A consulta A08 retorna vazio, então não demonstra inconsistência. Por isso o script foi testado antes da entrega. |
 
-Entretanto, as respostas não foram consideradas automaticamente corretas. As sugestões precisaram ser analisadas e verificadas de acordo com as informações obtidas na visita técnica, os conteúdos estudados na disciplina e as orientações fornecidas pelo professor.
+- 6.5. Considerações finais sobre o uso da inteligência artificial
 
-A utilização da inteligência artificial não substituiu a análise das informações nem as decisões tomadas durante o desenvolvimento do trabalho. Seu uso contribuiu como recurso complementar para o aprendizado e para a execução das atividades, sendo necessário manter uma postura crítica e responsável diante das respostas fornecidas.
+- O ChatGPT e o Claude foram utilizados como ferramentas de apoio durante o desenvolvimento do projeto, contribuindo para organizar informações, gerar a massa de dados, escrever o script SQL e melhorar a documentação.
+
+- Entretanto, as respostas não foram consideradas automaticamente corretas. As sugestões precisaram ser analisadas e verificadas de acordo com as informações obtidas na visita técnica, os conteúdos estudados na disciplina e as orientações fornecidas pelo professor.
+
+- A utilização da inteligência artificial não substituiu a análise das informações nem as decisões tomadas durante o desenvolvimento do trabalho. Seu uso contribuiu como recurso complementar para o aprendizado e para a execução das atividades, sendo necessário manter uma postura crítica e responsável diante das respostas fornecidas.
 
 
 
