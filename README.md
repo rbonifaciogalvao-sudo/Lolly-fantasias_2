@@ -176,11 +176,11 @@ Requisitos funcionais
 
 - Regras prováveis que ficaram de fora: cancelamento de venda (não confirmado na entrevista); prazo legal de troca (a loja não informou um prazo, e o sistema só registra a troca); emissão de nota fiscal (a loja emite a nota, mas esse processo acontece fora do sistema proposto, que não guarda dados fiscais como número, série ou chave da nota); idade mínima (não se aplica a fantasias).
 - Modelo Lógico Relacional 
-[Modelo lógico relacional da Lolly Fantasias](diagrama/modelo_logico.jpeg)
+[Modelo lógico relacional da Lolly Fantasias](diagrama/modelo_logico.png)
 
 Notação e software do DER
 
-- O DER foi criado no brModelo, na notação pedida (entidades, losangos, cardinalidades (mín, máx), círculos de atributos e identificadores preenchidos, sem chaves estrangeiras). Arquivo: [DER_conceitual.png](diagrama/der_conceitual.png).
+- O DER foi criado no brModelo, na notação pedida (entidades, losangos, cardinalidades (mín, máx), círculos de atributos e identificadores preenchidos, sem chaves estrangeiras). Arquivo: [DER conceitual](diagrama/der_conceitual.png).
 
 - O DER tem 9 entidades (CLIENTE, FUNCIONARIO, FORNECEDOR, FANTASIA, VENDA, TROCA, COMPRA, CAIXA, FECHAMENTO_CAIXA) e 12 relacionamentos (EFETUA, REALIZA, CONTEM, REFERE, RECEBE, DEVOLVE, RESPONSAVEL, ENTRA, FORNECE, REGISTRA, GERA, CONFERE). CONTEM e ENTRA são relacionamentos N:N com atributos próprios.
 
