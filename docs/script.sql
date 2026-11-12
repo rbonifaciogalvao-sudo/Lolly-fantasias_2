@@ -10,6 +10,9 @@
 -- ---------------------------------------------------------------------
 -- 1. TABELAS E CONSTRAINTS
 -- ---------------------------------------------------------------------
+DROP DATABASE IF EXISTS lolly_fantasias;
+CREATE DATABASE lolly_fantasias CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE lolly_fantasias;
 
 CREATE TABLE CLIENTE (
   ID_CLIENTE        INT          NOT NULL AUTO_INCREMENT,
