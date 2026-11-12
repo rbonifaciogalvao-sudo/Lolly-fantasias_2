@@ -330,7 +330,7 @@ Diagrama: [Modelo Lógico](diagrama/modelo_logico.png), feito no brModelo (nota�
 - 3. Script SQL completo
 
 
-Arquivo: [docs/script.sql](docs/script.sql), para MySQL 8.0.16 ou superior. O script foi executado no SQLize (MySQL 8.0), que não aceita DROP DATABASE, CREATE DATABASE e USE; esses comandos ficam comentados no topo do arquivo (-- CREATE DATABASE lolly_fantasias CHARACTER SET utf8mb4; -- USE lolly_fantasias;) e devem ser ativados se o script for rodado em uma instalação local do MySQL. Para executar do zero, rode o arquivo inteiro. Ordem dentro do arquivo:
+Arquivo: [docs/script.sql](docs/script.sql), para MySQL 8.0.16 ou superior.
 
 1. `CREATE DATABASE` e `USE`
 2. `CREATE TABLE` das 11 tabelas, com PK, FK, NOT NULL, UNIQUE, CHECK e DEFAULT, mais os índices do dicionário
