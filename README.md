@@ -447,6 +447,11 @@ O uso de IA para gerar a massa está documentado na seção 6.
 
 - A utilização da inteligência artificial não substituiu a análise das informações nem as decisões tomadas durante o desenvolvimento do trabalho. Seu uso contribuiu como recurso complementar para o aprendizado e para a execução das atividades, sendo necessário manter uma postura crítica e responsável diante das respostas fornecidas.
 
+---
+
+## 7\. Apresentação Corporativo Final
+
+[Link do vídeo do grupo](https://youtu.be/zn_1lnbMud4)
 
 
 
